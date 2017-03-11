@@ -18,98 +18,75 @@ public class PlayerController : MonoBehaviour {
 	public int health = MAX_HEALTH;
 	public int mana = MAX_MANA;
 	public float speed;
+	public float maxSpeed;
 
+	private const int DASH_LAG = 45;
+	private int dashCtr;
 	public bool isCleave = false;
 	public bool isBash = false;
 	public bool isDash = false;
 	public bool isMoving = false;
 	public bool isDead = false;
 	public bool isFacingRight = true;
-	//public bool takeInput = true;
 
 	// Update is called once per frame
 	void Update () {
-<<<<<<< HEAD
+		targetPosition = transform.position;
 		//speed = this.GetComponent<Rigidbody2D> ().velocity.magnitude;
 		//isMoving = (speed == 0) ? false : true;
-			if (Input.GetKey (KeyCode.Mouse0)) {
-				targetPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-				isMoving = true;
-				updateAnimator ();
-			}
-			if (Input.GetKeyDown (KeyCode.Mouse1)) {
-				print ("Cleave.");
-				anim.Play ("Cleave");
-				isCleave = true;
-				updateAnimator ();
-			}
-			if (Input.GetKeyDown (KeyCode.Q)) {
-				print ("Bash.");
-				anim.Play ("HeavyAttack");
-				isBash = true;
-				updateAnimator ();
-			}
-			if (Input.GetKeyDown (KeyCode.W)) {
-				print ("Dash.");
-				isDash = true;
-				takeInput = false;
-				updateAnimator ();
-			}
-		transform.position = Vector3.MoveTowards (transform.position, targetPosition, Time.deltaTime * 5);
-=======
-		speed = rb.velocity.magnitude;
-		isMoving = (speed == 0) ? false : true;
-
-		if (Input.GetKeyDown(KeyCode.Mouse0))
-		{
-			targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		 
+		if (Input.GetKey (KeyCode.Mouse0) && dashCtr == 0) {
+			targetPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			isMoving = true;
-			updateAnimator ();
+			transform.position = Vector3.MoveTowards (transform.position, targetPosition, Time.deltaTime * 5);
 		}
-		if (Input.GetKeyDown(KeyCode.Mouse1))
-		{
+		if (Input.GetKeyDown (KeyCode.Mouse1)  && dashCtr == 0) {
 			print ("Cleave.");
+			anim.Play ("Cleave");
 			isCleave = true;
-			updateAnimator ();
 		}
-		if (Input.GetKeyDown(KeyCode.Q)) {
-			print("Bash.");
+		if (Input.GetKeyDown (KeyCode.Q)  && dashCtr == 0) {
+			print ("Bash.");
+			anim.Play ("HeavyAttack");
 			isBash = true;
-			updateAnimator ();
 		}
-		if (Input.GetKeyDown(KeyCode.W)) {
-			print("Dash.");
+		if (Input.GetKeyDown (KeyCode.W)  && dashCtr == 0 && mana >= 100) {
+			print ("Dash.");
 			isDash = true;
-			updateAnimator ();
+			dashCtr = DASH_LAG;
 		}
 
-		transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * 5);
->>>>>>> 1b095a7b50a1fe448aace657a55c0efdf1436786
+		if (dashCtr > 0) {
+			dashCtr--;
+		}
+			
+		if (mana < MAX_MANA)
+			mana++;
+		
+		updateAnimator();
 	}
 
 	void FixedUpdate() {
 		vel = targetPosition.x - trans.position.x;
+		//print (vel);
 
 		if (isDash) {
-			/*if ((Camera.main.ScreenToWorldPoint (Input.mousePosition)).x > transform.position.x)
-				dash.x = (Camera.main.ScreenToWorldPoint (Input.mousePosition)).x - transform.position.x;
-			else
-				dash.x = (Camera.main.ScreenToWorldPoint (Input.mousePosition)).x + transform.position.x;
-			
-			if ((Camera.main.ScreenToWorldPoint (Input.mousePosition)).y > transform.position.y)
-				dash.y = (Camera.main.ScreenToWorldPoint (Input.mousePosition)).y - transform.position.y;
-			else
-				dash.y = (Camera.main.ScreenToWorldPoint (Input.mousePosition)).y + transform.position.y; */
-
-			//dash.x = (1 / (2 *(dash.sqrMagnitude))) * dash.x;
-			//dash.y = (1 / (2 *(dash.sqrMagnitude))) * dash.y;
-
-			targetPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-
+			//StartCoroutine("dashAttack");
 			anim.Play ("Dash");
-			transform.position = Vector3.Lerp (transform.position, targetPosition, Time.deltaTime * 15);
+			//targetPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			//transform.position = Vector3.LerpUnclamped (transform.position, targetPosition, 1 - Mathf.Exp(-40 * Time.deltaTime));
 
+			Vector3 mouseDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position;
+			mouseDir = mouseDir.normalized;
+
+			rb.AddForce (mouseDir * 1500);
+			mana -= 100;
 			isDash = false;
+		}
+
+		if(rb.velocity.magnitude > maxSpeed)
+		{
+			rb.velocity = rb.velocity.normalized * maxSpeed;
 		}
 
 		if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x - trans.position.x > 0 && !isFacingRight) {
@@ -139,4 +116,13 @@ public class PlayerController : MonoBehaviour {
 	private void updateAnimator() {
 		anim.SetFloat ("Speed", Mathf.Abs(vel));
 	}
+
+	/*private IEnumerator dashAttack() {
+		anim.Play ("Dash");
+		targetPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		transform.position = Vector3.MoveTowards (transform.position, targetPosition, Time.deltaTime * 15);
+
+		isDash = false;
+		yield return new WaitForSeconds(1.5f);
+	}*/
 }
