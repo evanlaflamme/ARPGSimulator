@@ -80,7 +80,8 @@ public class EnemyController : MonoBehaviour {
     {
         if (health <= 0)
         {
-            
+            ItemController ic = new ItemController(); ;
+            ic.GenerateNewItem();
             //Instantiate(item, transform.position, transform.rotation);
 
         }

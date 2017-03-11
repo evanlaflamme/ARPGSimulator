@@ -7,9 +7,10 @@ public class ItemController : MonoBehaviour {
     private Hashtable items = new Hashtable();
 	// Use this for initialization
 	void Start () {
+
 	}
 	
-	void GenerateNewItem()
+	public void GenerateNewItem()
     {
         string rarity = "";
         int itemRarity = Random.Range(0, 101);
@@ -24,6 +25,8 @@ public class ItemController : MonoBehaviour {
 
         Item info;
         GameObject gameItem;
+        gameItem.transform.position = transform.position;
+        gameItem.transform.rotation = transform.rotation;
 
         switch (Random.Range(0,4))
         {
@@ -31,27 +34,25 @@ public class ItemController : MonoBehaviour {
             case 0:
                 gameItem = (GameObject) Instantiate(GameObject.FindGameObjectWithTag("Weapon"));
                 info = new Weapon(Random.Range(0, 6), rarity, 1);
-                gameObject.SetActive(false);
                 items.Add(gameItem, info);
                 break;
             case 1:
                 gameItem = (GameObject)Instantiate(GameObject.FindGameObjectWithTag("Armor"));
                 info = new Armor(Random.Range(0, 6), rarity, 1);
-                gameObject.SetActive(false);
                 items.Add(gameItem, info);
                 break;
             case 2:
                 gameItem = (GameObject)Instantiate(GameObject.FindGameObjectWithTag("HealthPot"));
                 info = new HealthPot(1);
-                gameObject.SetActive(false);
                 items.Add(gameItem, info);
                 break;
             case 3:
                 gameItem = (GameObject)Instantiate(GameObject.FindGameObjectWithTag("Weapon"));
                 info = new ManaPot(1);
-                gameObject.SetActive(false);
                 items.Add(gameItem, info);
                 break;
         }
+        gameItem.transform.position = transform.position;
+        gameItem.transform.rotation = transform.rotation;
     }
 }
