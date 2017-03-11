@@ -5,6 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	private Vector3 targetPosition;
+	private Vector3 vel; // = new Vector3(0,0,0); /* values used to calculate velocity */
+
+	public Rigidbody2D rb;
+	public Transform trans;
 
 	private const int MAX_HEALTH = 1000;
 	private const int MAX_MANA = 200;
@@ -51,11 +55,11 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		Rigidbody2D rb = this.GetComponent<Rigidbody2D> ();
+		vel = targetPosition - trans.position;
 
-		if (rb.velocity.x > 0 && !isFacingRight) {
+		if (vel.x > 0 && !isFacingRight) {
 			flip ();
-		} else if (rb.velocity.x < 0 && isFacingRight) {
+		} else if (vel.x < 0 && isFacingRight) {
 			flip ();
 		}
 	}		

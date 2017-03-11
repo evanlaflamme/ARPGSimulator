@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8f5830893c91a4af6ad4b13077e7f1e6
-timeCreated: 1489198047
+timeCreated: 1489205438
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -119,10 +119,10 @@ TextureImporter:
       name: PixelCharAnim_Sword_run_COLOR_0
       rect:
         serializedVersion: 2
-        x: 6
+        x: 0
         y: 0
-        width: 15
-        height: 24
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,10 +132,10 @@ TextureImporter:
       name: PixelCharAnim_Sword_run_COLOR_1
       rect:
         serializedVersion: 2
-        x: 41
+        x: 32
         y: 0
-        width: 12
-        height: 24
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,10 +145,10 @@ TextureImporter:
       name: PixelCharAnim_Sword_run_COLOR_2
       rect:
         serializedVersion: 2
-        x: 76
+        x: 64
         y: 0
-        width: 9
-        height: 22
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,10 +158,10 @@ TextureImporter:
       name: PixelCharAnim_Sword_run_COLOR_3
       rect:
         serializedVersion: 2
-        x: 107
+        x: 96
         y: 0
-        width: 20
-        height: 24
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,10 +171,10 @@ TextureImporter:
       name: PixelCharAnim_Sword_run_COLOR_4
       rect:
         serializedVersion: 2
-        x: 138
+        x: 128
         y: 0
-        width: 19
-        height: 24
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +184,10 @@ TextureImporter:
       name: PixelCharAnim_Sword_run_COLOR_5
       rect:
         serializedVersion: 2
-        x: 172
+        x: 160
         y: 0
-        width: 19
-        height: 22
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
