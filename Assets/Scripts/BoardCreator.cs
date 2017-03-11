@@ -22,6 +22,7 @@ public class BoardCreator : MonoBehaviour
 	public GameObject door;
 	public GameObject player;
 	public GameObject enemy;
+	public GameObject boss;
 
 	private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
 	private Room[] rooms;                                     // All the rooms that are created for this board.
@@ -43,6 +44,8 @@ public class BoardCreator : MonoBehaviour
 
 		InstantiateTiles ();
 		InstantiateOuterWalls ();
+
+
 	}
 
 
@@ -89,8 +92,8 @@ public class BoardCreator : MonoBehaviour
 			if (i == rooms.Length - 1) { //Boss Room is max size
 				rooms [i].SetupRoom (new IntRange (roomWidth.m_Max, roomWidth.m_Max), new IntRange (roomHeight.m_Max, roomHeight.m_Max), columns, rows, corridors [i - 1]);
 
-				/*Vector3 bossPos = new Vector3 (rooms[rooms.Length - 1].xPos, rooms[rooms.Length - 1].yPos, 0);
-				Instantiate(boss, bossPos, Quaternion.identity);*/
+				Vector3 bossPos = new Vector3 (rooms[rooms.Length - 1].xPos, rooms[rooms.Length - 1].yPos, 0);
+				Instantiate(boss, bossPos, Quaternion.identity);
 			} else {
 				// Setup the room based on the previous corridor.
 				rooms[i].SetupRoom (roomWidth, roomHeight, columns, rows, corridors[i - 1]);
