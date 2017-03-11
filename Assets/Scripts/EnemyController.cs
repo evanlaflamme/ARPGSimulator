@@ -10,15 +10,9 @@ public class EnemyController : MonoBehaviour {
 
 	private const int MAX_HEALTH = 200;
 	public int health = MAX_HEALTH;
-<<<<<<< HEAD
 
-	private Vector2 targetPosition;
-    public Transform spawnLocation;
     public GameObject item;
-    // Use this for initialization
-    void Start () {
-		
-=======
+
 	public bool isDead = false;
 	public bool isFacingRight = true;
 	public float speed;
@@ -26,21 +20,10 @@ public class EnemyController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
->>>>>>> bd00a8c3f17f623453f0aa358633f1bbca43cd29
 	}
 	
 	// Update is called once per frame
 	void Update () {
-<<<<<<< HEAD
-		//targetPosition = player.transform.position;
-
-		//transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * 0.35F);
-
-        if (health >0)
-            damage(50);
-        Dead();
-        Debug.Log(health);
-=======
 		if (!isDead) {
 			targetPosition = player.transform.position;
 			transform.position = Vector3.MoveTowards (transform.position, targetPosition, Time.deltaTime * 0.15F);
@@ -54,13 +37,14 @@ public class EnemyController : MonoBehaviour {
 		}
 
 		updateAnimator ();
->>>>>>> bd00a8c3f17f623453f0aa358633f1bbca43cd29
 	}
 
 	void damage(int dmg) {
 		health = health - dmg;
-		if (health <= 0)
+		if (health <= 0) {
 			isDead = true;
+			Dead ();
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
