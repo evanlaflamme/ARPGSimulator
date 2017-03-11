@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		speed = this.GetComponent<Rigidbody2D> ().velocity.magnitude;
+		speed = rb.velocity.magnitude;
 		isMoving = (speed == 0) ? false : true;
 
 		if (Input.GetKeyDown(KeyCode.Mouse0))
