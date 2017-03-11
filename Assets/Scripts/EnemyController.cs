@@ -7,22 +7,20 @@ public class EnemyController : MonoBehaviour {
 	public GameObject player;
 	public Animator anim;
 
+
 	private const int MAX_HEALTH = 200;
 	public int health = MAX_HEALTH;
 	public bool isDead = false;
 
-	private Vector2 targetPosition;
-
 	// Use this for initialization
 	void Start () {
-		
+		player = GameObject.FindWithTag ("Player");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (!isDead) {
-			targetPosition = player.transform.position;
-			transform.position = Vector3.MoveTowards (transform.position, targetPosition, Time.deltaTime * 0.15F);
+			transform.position = Vector3.MoveTowards (transform.position, player.transform.position, Time.deltaTime * 0.15F);
 		}
 
 		updateAnimator ();
@@ -45,5 +43,4 @@ public class EnemyController : MonoBehaviour {
 		//anim.SetFloat ("Speed", Mathf.Abs(rb.velocity.magnitude));
 		anim.SetBool("isDead", isDead);
 	}
-
 }
