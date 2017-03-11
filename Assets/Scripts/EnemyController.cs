@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour {
 	private const int MAX_HEALTH = 200;
 	public int health = MAX_HEALTH;
 	public bool isDead = false;
+	public bool isFacingRight = true;
+	public float speed;
 
 	private Vector2 targetPosition;
 
@@ -23,6 +25,13 @@ public class EnemyController : MonoBehaviour {
 		if (!isDead) {
 			targetPosition = player.transform.position;
 			transform.position = Vector3.MoveTowards (transform.position, targetPosition, Time.deltaTime * 0.15F);
+			speed = Mathf.Abs(targetPosition.magnitude - transform.position.magnitude);
+		}
+
+		if (player.transform.position.x - gameObject.transform.position.x > 0 && !isFacingRight && !isDead) {
+			flip ();
+		} else if (player.transform.position.x - gameObject.transform.position.x < 0 && isFacingRight && !isDead) {
+			flip ();
 		}
 
 		updateAnimator ();
@@ -36,14 +45,34 @@ public class EnemyController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("Cleave")) {
-			PlayerController source = other.gameObject.GetComponentInParent<PlayerController>();
-			damage (source.doDamage(1.0f));
+			PlayerController source = other.gameObject.GetComponentInParent<PlayerController> ();
+			damage (source.doDamage (1.0f));
+		} else if (other.gameObject.CompareTag ("Bash")) {
+			PlayerController source = other.gameObject.GetComponentInParent<PlayerController> ();
+			damage (source.doDamage (1.3f));
+		} else if (other.gameObject.CompareTag ("Dash")) {
+			PlayerController source = other.gameObject.GetComponentInParent<PlayerController> ();
+			damage (source.doDamage (1.1f));
+		} else if (other.gameObject.CompareTag ("Dash1")) {
+			PlayerController source = other.gameObject.GetComponentInParent<PlayerController> ();
+			damage (source.doDamage (2.0f));
+		} else if (other.gameObject.CompareTag ("Explosion")) {
+			PlayerController source = other.gameObject.GetComponentInParent<PlayerController> ();
+			damage (source.doDamage (5.0f));
 		}
 	}
 
 	private void updateAnimator() {
-		//anim.SetFloat ("Speed", Mathf.Abs(rb.velocity.magnitude));
-		anim.SetBool("isDead", isDead);
+		anim.SetFloat ("Speed", speed);
+		anim.SetBool ("isDead", isDead);
 	}
+
+	public void flip() {
+		isFacingRight = !isFacingRight;
+		Vector3 scale = transform.localScale;
+		scale.x *= -1;
+		transform.localScale = scale;
+	}
+
 
 }

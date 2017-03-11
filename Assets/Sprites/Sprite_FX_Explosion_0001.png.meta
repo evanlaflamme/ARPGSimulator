@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 3ffff53460c5341c9adbea5ce33dce9e
-timeCreated: 1489255137
+guid: a9fc94f3173764b83a3cab3410b9f105
+timeCreated: 1489261950
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: PixelCharAnim_Sword_run_COLOR_Enemy_0
-    21300002: PixelCharAnim_Sword_run_COLOR_Enemy_1
-    21300004: PixelCharAnim_Sword_run_COLOR_Enemy_2
-    21300006: PixelCharAnim_Sword_run_COLOR_Enemy_3
-    21300008: PixelCharAnim_Sword_run_COLOR_Enemy_4
-    21300010: PixelCharAnim_Sword_run_COLOR_Enemy_5
+    21300000: Sprite_FX_Explosion_0001_0
+    21300002: Sprite_FX_Explosion_0001_1
+    21300004: Sprite_FX_Explosion_0001_2
+    21300006: Sprite_FX_Explosion_0001_3
+    21300008: Sprite_FX_Explosion_0001_4
+    21300010: Sprite_FX_Explosion_0001_5
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -116,80 +116,80 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PixelCharAnim_Sword_run_COLOR_Enemy_0
+      name: Sprite_FX_Explosion_0001_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 77
+        y: 324
+        width: 68
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PixelCharAnim_Sword_run_COLOR_Enemy_1
+      name: Sprite_FX_Explosion_0001_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 297
+        y: 310
+        width: 110
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PixelCharAnim_Sword_run_COLOR_Enemy_2
+      name: Sprite_FX_Explosion_0001_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 517
+        y: 286
+        width: 152
+        height: 136
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PixelCharAnim_Sword_run_COLOR_Enemy_3
+      name: Sprite_FX_Explosion_0001_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 17
+        y: 43
+        width: 188
+        height: 172
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PixelCharAnim_Sword_run_COLOR_Enemy_4
+      name: Sprite_FX_Explosion_0001_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 240
+        y: 25
+        width: 224
+        height: 208
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PixelCharAnim_Sword_run_COLOR_Enemy_5
+      name: Sprite_FX_Explosion_0001_5
       rect:
         serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
+        x: 472
+        y: 17
+        width: 241
+        height: 223
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
