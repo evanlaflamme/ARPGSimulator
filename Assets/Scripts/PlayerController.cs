@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+<<<<<<< HEAD
 		//speed = this.GetComponent<Rigidbody2D> ().velocity.magnitude;
 		//isMoving = (speed == 0) ? false : true;
 			if (Input.GetKey (KeyCode.Mouse0)) {
@@ -55,6 +56,35 @@ public class PlayerController : MonoBehaviour {
 				updateAnimator ();
 			}
 		transform.position = Vector3.MoveTowards (transform.position, targetPosition, Time.deltaTime * 5);
+=======
+		speed = rb.velocity.magnitude;
+		isMoving = (speed == 0) ? false : true;
+
+		if (Input.GetKeyDown(KeyCode.Mouse0))
+		{
+			targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			isMoving = true;
+			updateAnimator ();
+		}
+		if (Input.GetKeyDown(KeyCode.Mouse1))
+		{
+			print ("Cleave.");
+			isCleave = true;
+			updateAnimator ();
+		}
+		if (Input.GetKeyDown(KeyCode.Q)) {
+			print("Bash.");
+			isBash = true;
+			updateAnimator ();
+		}
+		if (Input.GetKeyDown(KeyCode.W)) {
+			print("Dash.");
+			isDash = true;
+			updateAnimator ();
+		}
+
+		transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * 5);
+>>>>>>> 1b095a7b50a1fe448aace657a55c0efdf1436786
 	}
 
 	void FixedUpdate() {
