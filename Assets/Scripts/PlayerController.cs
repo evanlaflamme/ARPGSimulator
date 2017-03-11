@@ -155,4 +155,18 @@ public class PlayerController : MonoBehaviour {
 	public int doDamage(float multiplier) {
 		return (int)(Random.Range(20, 30) * multiplier);
 	}
+
+	private int damage(int dmg) {
+		health -= dmg;
+		if (health <= 0)
+			isDead = true;
+	}
+
+	void OnTriggerEnter2D (Collider2D other) {
+		if (other.gameObject.CompareTag ("OctalpusHit")) {
+			damage (100);
+		} else if (other.gameObject.CompareTag ("ZombieHit")) {
+			damage (20);
+		}
+	}
 }
