@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	private Vector3 targetPosition;
-	private float vel; // = new Vector3(0,0,0); /* values used to calculate velocity */
-
-	private Vector3 dash = new Vector3 ();
+	//private Vector3 targetPosition;
 
 	public Rigidbody2D rb;
 	public Transform trans;
@@ -16,12 +13,22 @@ public class PlayerController : MonoBehaviour {
 	private const int MAX_HEALTH = 1000;
 	private const int MAX_MANA = 200;
 	public int health = MAX_HEALTH;
-	public int mana = MAX_MANA;
+	public float mana = MAX_MANA;
 	public float speed;
 	public float maxSpeed;
 
 	private const int DASH_LAG = 45;
 	private int dashCtr;
+
+	private const int CLEAVE_LAG = 35;
+	private int cleaveCtr;
+
+	private const int BASH_LAG = 45;
+	private int bashCtr;
+
+	private const int LEAP_LAG = 75;
+	private int leapCtr;
+
 	public bool isCleave = false;
 	public bool isBash = false;
 	public bool isDash = false;
@@ -31,43 +38,70 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		targetPosition = transform.position;
+		//targetPosition = transform.position;
 		//speed = this.GetComponent<Rigidbody2D> ().velocity.magnitude;
 		//isMoving = (speed == 0) ? false : true;
 		 
-		if (Input.GetKey (KeyCode.Mouse0) && dashCtr == 0) {
-			targetPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			isMoving = true;
-			transform.position = Vector3.MoveTowards (transform.position, targetPosition, Time.deltaTime * 5);
+		if (Input.GetKey (KeyCode.Mouse0) && dashCtr == 0 && cleaveCtr == 0 && bashCtr == 0 && leapCtr == 0) {
+			//targetPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			//isMoving = true;
+			//transform.position = Vector3.MoveTowards (transform.position, targetPosition, Time.deltaTime * 5);
+			Vector3 mouseDir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position).normalized;
+			rb.AddForce (mouseDir * 50);
 		}
-		if (Input.GetKeyDown (KeyCode.Mouse1)  && dashCtr == 0) {
+		if (Input.GetKey (KeyCode.Mouse1)  && dashCtr == 0 && cleaveCtr == 0 && bashCtr == 0 && leapCtr == 0) {
 			print ("Cleave.");
 			anim.Play ("Cleave");
 			isCleave = true;
+			cleaveCtr = CLEAVE_LAG;
 		}
-		if (Input.GetKeyDown (KeyCode.Q)  && dashCtr == 0) {
+		if (Input.GetKey (KeyCode.Q)  && dashCtr == 0 && cleaveCtr == 0 && bashCtr == 0 && mana >= 60 && leapCtr == 0) {
 			print ("Bash.");
 			anim.Play ("HeavyAttack");
 			isBash = true;
+			bashCtr = BASH_LAG;
+			mana -= 60;
 		}
-		if (Input.GetKeyDown (KeyCode.W)  && dashCtr == 0 && mana >= 100) {
+		if (Input.GetKeyDown (KeyCode.W)  && dashCtr == 0 && cleaveCtr == 0 && bashCtr == 0 && mana >= 100 && leapCtr == 0) {
 			print ("Dash.");
 			isDash = true;
 			dashCtr = DASH_LAG;
 		}
 
+		if (Input.GetKey (KeyCode.E)  && dashCtr == 0 && cleaveCtr == 0 && bashCtr == 0 && mana >= 200 && leapCtr == 0) {
+			print ("Leap.");
+			anim.Play ("LeapSlam");
+			leapCtr = LEAP_LAG;
+			mana -= 200;
+		}
+
 		if (dashCtr > 0) {
 			dashCtr--;
+		} 
+
+		if (cleaveCtr > 0) {
+			cleaveCtr--;
+		}
+
+		if (bashCtr > 0) {
+			bashCtr--;
+		}
+
+
+		if (leapCtr > 0) {
+			leapCtr--;
 		}
 			
-		if (mana < MAX_MANA)
-			mana++;
+		if (mana < MAX_MANA) {
+			mana += 0.75f;
+			if (mana > MAX_MANA)
+				mana = MAX_MANA;
+		}
 		
 		updateAnimator();
 	}
 
 	void FixedUpdate() {
-		vel = targetPosition.x - trans.position.x;
 		//print (vel);
 
 		if (isDash) {
@@ -79,7 +113,7 @@ public class PlayerController : MonoBehaviour {
 			Vector3 mouseDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position;
 			mouseDir = mouseDir.normalized;
 
-			rb.AddForce (mouseDir * 1500);
+			rb.AddForce (mouseDir * 3000);
 			mana -= 100;
 			isDash = false;
 		}
@@ -88,10 +122,10 @@ public class PlayerController : MonoBehaviour {
 		{
 			rb.velocity = rb.velocity.normalized * maxSpeed;
 		}
-
-		if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x - trans.position.x > 0 && !isFacingRight) {
+			
+		if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x - trans.position.x > 0 && !isFacingRight && dashCtr == 0) {
 			flip ();
-		} else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x - trans.position.x < 0 && isFacingRight) {
+		} else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x - trans.position.x < 0 && isFacingRight && dashCtr == 0) {
 			flip ();
 		}
 		updateAnimator ();
@@ -114,15 +148,11 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void updateAnimator() {
-		anim.SetFloat ("Speed", Mathf.Abs(vel));
+		anim.SetFloat ("Speed", Mathf.Abs(rb.velocity.magnitude));
+		anim.SetBool ("isDead", isDead);
 	}
 
-	/*private IEnumerator dashAttack() {
-		anim.Play ("Dash");
-		targetPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		transform.position = Vector3.MoveTowards (transform.position, targetPosition, Time.deltaTime * 15);
-
-		isDash = false;
-		yield return new WaitForSeconds(1.5f);
-	}*/
+	public int doDamage(float multiplier) {
+		return (int)(Random.Range(20, 30) * multiplier);
+	}
 }

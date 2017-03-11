@@ -1,15 +1,19 @@
 fileFormatVersion: 2
-guid: 612f42dfa420748b3b361bf321b01d4e
-timeCreated: 1489250659
+guid: 623aa32294b9f434c8f3a64c42dc9c4c
+timeCreated: 1489259816
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: PixelCharAnim_Sword_death_COLOR_Enemy_0
-    21300002: PixelCharAnim_Sword_death_COLOR_Enemy_1
-    21300004: PixelCharAnim_Sword_death_COLOR_Enemy_2
-    21300006: PixelCharAnim_Sword_death_COLOR_Enemy_3
-    21300008: PixelCharAnim_Sword_death_COLOR_Enemy_4
-    21300010: PixelCharAnim_Sword_death_COLOR_Enemy_5
+    21300000: PixelCharAnim_Sword_jumpSlam_COLOR_0
+    21300002: PixelCharAnim_Sword_jumpSlam_COLOR_1
+    21300004: PixelCharAnim_Sword_jumpSlam_COLOR_2
+    21300006: PixelCharAnim_Sword_jumpSlam_COLOR_3
+    21300008: PixelCharAnim_Sword_jumpSlam_COLOR_4
+    21300010: PixelCharAnim_Sword_jumpSlam_COLOR_5
+    21300012: PixelCharAnim_Sword_jumpSlam_COLOR_6
+    21300014: PixelCharAnim_Sword_jumpSlam_COLOR_7
+    21300016: PixelCharAnim_Sword_jumpSlam_COLOR_8
+    21300018: PixelCharAnim_Sword_jumpSlam_COLOR_9
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -116,80 +120,132 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PixelCharAnim_Sword_death_COLOR_Enemy_0
+      name: PixelCharAnim_Sword_jumpSlam_COLOR_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 10
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PixelCharAnim_Sword_death_COLOR_Enemy_1
+      name: PixelCharAnim_Sword_jumpSlam_COLOR_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 44
         y: 0
-        width: 32
-        height: 32
+        width: 13
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PixelCharAnim_Sword_death_COLOR_Enemy_2
+      name: PixelCharAnim_Sword_jumpSlam_COLOR_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
+        x: 76
+        y: 1
+        width: 13
+        height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PixelCharAnim_Sword_death_COLOR_Enemy_3
+      name: PixelCharAnim_Sword_jumpSlam_COLOR_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
+        x: 108
+        y: 3
+        width: 17
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PixelCharAnim_Sword_death_COLOR_Enemy_4
+      name: PixelCharAnim_Sword_jumpSlam_COLOR_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
+        x: 140
+        y: 1
+        width: 15
+        height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PixelCharAnim_Sword_death_COLOR_Enemy_5
+      name: PixelCharAnim_Sword_jumpSlam_COLOR_5
       rect:
         serializedVersion: 2
-        x: 160
+        x: 172
         y: 0
-        width: 32
-        height: 32
+        width: 15
+        height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PixelCharAnim_Sword_jumpSlam_COLOR_6
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 0
+        width: 22
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PixelCharAnim_Sword_jumpSlam_COLOR_7
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 0
+        width: 22
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PixelCharAnim_Sword_jumpSlam_COLOR_8
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 0
+        width: 22
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PixelCharAnim_Sword_jumpSlam_COLOR_9
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 0
+        width: 22
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
