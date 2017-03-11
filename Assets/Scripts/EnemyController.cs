@@ -82,7 +82,7 @@ public class EnemyController : MonoBehaviour {
     {
         if (health <= 0)
         {
-            Instantiate(item, spawnLocation.position, spawnLocation.rotation);
+            Instantiate(item, transform.position, transform.rotation);
         }
     }
 }
