@@ -11,8 +11,6 @@ public class EnemyController : MonoBehaviour {
 	private const int MAX_HEALTH = 200;
 	public int health = MAX_HEALTH;
 
-    public GameObject item;
-
 	public bool isDead = false;
 	public bool isFacingRight = true;
 	public float speed;
@@ -82,7 +80,9 @@ public class EnemyController : MonoBehaviour {
     {
         if (health <= 0)
         {
-            Instantiate(item, transform.position, transform.rotation);
+            
+            //Instantiate(item, transform.position, transform.rotation);
+
         }
     }
 }

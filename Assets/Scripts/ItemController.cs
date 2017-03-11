@@ -4,14 +4,54 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour {
 
-
-    private GameObject[] items = { GameObject.FindGameObjectWithTag("Soda"), GameObject.FindGameObjectWithTag("Food") };
+    private Hashtable items = new Hashtable();
 	// Use this for initialization
 	void Start () {
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	void GenerateNewItem()
+    {
+        string rarity = "";
+        int itemRarity = Random.Range(0, 101);
+        if (itemRarity <= 50)
+            rarity = "White";
+        else if (itemRarity <= 85 && itemRarity > 50)
+            rarity = "Green";
+        else if (itemRarity <= 95 && itemRarity > 85)
+            rarity = "Blue";
+        else if (itemRarity <= 100 && itemRarity > 95)
+            rarity = "Purple";
+
+        Item info;
+        GameObject gameItem;
+
+        switch (Random.Range(0,4))
+        {
+
+            case 0:
+                gameItem = (GameObject) Instantiate(GameObject.FindGameObjectWithTag("Weapon"));
+                info = new Weapon(Random.Range(0, 6), rarity, 1);
+                gameObject.SetActive(false);
+                items.Add(gameItem, info);
+                break;
+            case 1:
+                gameItem = (GameObject)Instantiate(GameObject.FindGameObjectWithTag("Armor"));
+                info = new Armor(Random.Range(0, 6), rarity, 1);
+                gameObject.SetActive(false);
+                items.Add(gameItem, info);
+                break;
+            case 2:
+                gameItem = (GameObject)Instantiate(GameObject.FindGameObjectWithTag("HealthPot"));
+                info = new HealthPot(1);
+                gameObject.SetActive(false);
+                items.Add(gameItem, info);
+                break;
+            case 3:
+                gameItem = (GameObject)Instantiate(GameObject.FindGameObjectWithTag("Weapon"));
+                info = new ManaPot(1);
+                gameObject.SetActive(false);
+                items.Add(gameItem, info);
+                break;
+        }
+    }
 }

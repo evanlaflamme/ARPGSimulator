@@ -6,7 +6,7 @@ public class BoardCreator : MonoBehaviour
 	// The type of tile that will be laid in a specific position.
 	public enum TileType
 	{
-		Wall, Floor,
+		Wall, Floor, Door,
 	}
 
 
@@ -19,6 +19,7 @@ public class BoardCreator : MonoBehaviour
 	public GameObject[] floorTiles;                           // An array of floor tile prefabs.
 	public GameObject[] wallTiles;                            // An array of wall tile prefabs.
 	public GameObject[] outerWallTiles;                       // An array of outer wall tile prefabs.
+	public GameObject door;
 	public GameObject player;
 	public GameObject enemy;
 
@@ -85,8 +86,15 @@ public class BoardCreator : MonoBehaviour
 			// Create a room.
 			rooms[i] = new Room ();
 
-			// Setup the room based on the previous corridor.
-			rooms[i].SetupRoom (roomWidth, roomHeight, columns, rows, corridors[i - 1]);
+			if (i == rooms.Length - 1) { //Boss Room is max size
+				rooms [i].SetupRoom (new IntRange (roomWidth.m_Max, roomWidth.m_Max), new IntRange (roomHeight.m_Max, roomHeight.m_Max), columns, rows, corridors [i - 1]);
+
+				/*Vector3 bossPos = new Vector3 (rooms[rooms.Length - 1].xPos, rooms[rooms.Length - 1].yPos, 0);
+				Instantiate(boss, bossPos, Quaternion.identity);*/
+			} else {
+				// Setup the room based on the previous corridor.
+				rooms[i].SetupRoom (roomWidth, roomHeight, columns, rows, corridors[i - 1]);
+			}
 
 			for (int j = 0; j < (rooms[i].roomWidth * rooms[i].roomHeight) / 15; j++) {
 				Vector3 enemyPos = new Vector3 (rooms[i].xPos + UnityEngine.Random.Range(0, rooms[i].roomWidth), rooms[i].yPos + UnityEngine.Random.Range(0, rooms[i].roomHeight), 0);
@@ -103,9 +111,6 @@ public class BoardCreator : MonoBehaviour
 				corridors[i].SetupCorridor(rooms[i], corridorLength, roomWidth, roomHeight, columns, rows, false);
 			}
 		}
-
-		/*Vector3 bossPos = new Vector3 (rooms[rooms.Length - 1].xPos, rooms[rooms.Length - 1].yPos, 0);
-		Instantiate(boss, bossPos, Quaternion.identity);*/
 	}
 
 
@@ -126,8 +131,15 @@ public class BoardCreator : MonoBehaviour
 				{
 					int yCoord = currentRoom.yPos + k;
 
+					if (i == rooms.Length - 1 &&
+					    j == currentRoom.roomWidth / 2 && //Middle of room
+					    k == currentRoom.roomHeight - 1) { //Top of room
+						tiles [xCoord] [yCoord + 1] = TileType.Door;
+					}
+
 					// The coordinates in the jagged array are based on the room's position and it's width and height.
-					tiles[xCoord][yCoord] = TileType.Floor;
+					tiles [xCoord] [yCoord] = TileType.Floor;
+
 				}
 			}
 		}
@@ -183,6 +195,9 @@ public class BoardCreator : MonoBehaviour
 				if (tiles [i] [j] == TileType.Wall) {
 					InstantiateFromArray (wallTiles, i, j);
 				} else if (tiles [i] [j] == TileType.Floor) {
+					InstantiateFromArray (floorTiles, i, j);
+				} else if (tiles [i] [j] == TileType.Door) {
+					InstantiateDoor (i, j);
 					InstantiateFromArray (floorTiles, i, j);
 				}
 			}
@@ -250,6 +265,18 @@ public class BoardCreator : MonoBehaviour
 
 		// Create an instance of the prefab from the random index of the array.
 		GameObject tileInstance = Instantiate(prefabs[randomIndex], position, Quaternion.identity) as GameObject;
+
+		// Set the tile's parent to the board holder.
+		tileInstance.transform.parent = boardHolder.transform;
+	}
+
+	void InstantiateDoor (float xCoord, float yCoord)
+	{
+		// The position to be instantiated at is based on the coordinates.
+		Vector3 position = new Vector3(xCoord, yCoord, 0f);
+
+		// Create an instance of the prefab from the random index of the array.
+		GameObject tileInstance = Instantiate(door, position, Quaternion.identity) as GameObject;
 
 		// Set the tile's parent to the board holder.
 		tileInstance.transform.parent = boardHolder.transform;
