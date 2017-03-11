@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Item : MonoBehaviour {
-    public abstract void RarityBonus(string rarity);
 }
 
 class Equipment : Item
@@ -15,7 +14,7 @@ class Equipment : Item
     {
         bonus = 0;
     }
-    public override void RarityBonus(string rarity)
+    public virtual int RarityBonus(string rarity)
     {
         switch (rarity)
         {
@@ -31,6 +30,7 @@ class Equipment : Item
             default:
                 break;
         }
+        return bonus;
     }
     public virtual void Bonus()
     {
@@ -40,9 +40,6 @@ class Equipment : Item
 
 class Consumable : Item
 {
-    public override void RarityBonus(string rarity)
-    {
-    }
 
     public virtual void UseConsumable()
     {
@@ -52,10 +49,7 @@ class Consumable : Item
 
 class Key : Item
 {
-    public override void RarityBonus(string rarity)
-    {
-        //if boss then key drops
-    }
+
 }
 
 class Weapon: Equipment
@@ -66,12 +60,36 @@ class Weapon: Equipment
     {
         this.baseBonus = baseBonus;
         this.rarity = rarity;
-        this.bonus = baseBonus + Rarity;
+        this.bonus = baseBonus + RarityBonus(rarity);
     }
+}
 
-    void TotalBonus()
+class Armor: Equipment
+{
+    private int baseBonus, bonus;
+    private string rarity;
+    public Armor(int baseBonus, string rarity)
     {
-        bonus = (baseb)
+        this.baseBonus = baseBonus;
+        this.rarity = rarity;
+        this.bonus = baseBonus + RarityBonus(rarity);
     }
-    
+}
+
+class HealthPot: Consumable
+{
+    private int baseHeal, levelBonus, totalHeal;
+    public HealthPot(int levelBonus)
+    {
+        this.totalHeal = baseHeal * levelBonus;
+    }
+}
+
+class ManaPot : Consumable
+{
+    private int baseHeal, levelBonus, totalHeal;
+    public ManaPot(int levelBonus)
+    {
+        this.totalHeal = baseHeal * levelBonus;
+    }
 }
