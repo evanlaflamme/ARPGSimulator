@@ -23,6 +23,7 @@ public class BoardCreator : MonoBehaviour
 	public GameObject player;
 	public GameObject enemy;
 	public GameObject boss;
+	public GameManager gameManager;
 
 	private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
 	private Room[] rooms;                                     // All the rooms that are created for this board.
@@ -45,12 +46,6 @@ public class BoardCreator : MonoBehaviour
 		InstantiateTiles ();
 		InstantiateOuterWalls ();
 
-
-	}
-
-	public void ResetBoard() {
-		Destroy (boardHolder);
-		Start ();
 	}
 
 	void SetupTilesArray ()
