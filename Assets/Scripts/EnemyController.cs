@@ -13,6 +13,10 @@ public class EnemyController : MonoBehaviour {
     private const int MAX_HEALTH = 200;
 	public int health = MAX_HEALTH;
 
+	public float range;
+	public float attackRange;
+	private int attackCtr;
+
 	public bool isDead = false;
 	public bool isFacingRight = true;
 	public float speed;
@@ -25,17 +29,31 @@ public class EnemyController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!isDead) {
-			targetPosition = player.transform.position;
-			transform.position = Vector3.MoveTowards (transform.position, targetPosition, Time.deltaTime * 0.15F);
-			speed = Mathf.Abs(targetPosition.magnitude - transform.position.magnitude);
-		}
+			if ((Vector3.Distance (gameObject.transform.position, player.transform.position)) <= range) {
+				if ((Vector3.Distance (gameObject.transform.position, player.transform.position)) >= attackRange) {
+					//Move towards player
+					targetPosition = player.transform.position;
+					transform.position = Vector3.MoveTowards (transform.position, targetPosition, Time.deltaTime * 0.20F);
+					speed = Mathf.Abs (targetPosition.magnitude - transform.position.magnitude);
+				} else {
+					//Attack
+					if (attackCtr == 0) {
+						anim.Play ("Attack");
+						attackCtr = (int)Random.Range (50, 100);
+					}
 
-		if (player.transform.position.x - gameObject.transform.position.x > 0 && !isFacingRight && !isDead) {
-			flip ();
-		} else if (player.transform.position.x - gameObject.transform.position.x < 0 && isFacingRight && !isDead) {
-			flip ();
-		}
+					if (attackCtr > 0) {
+						attackCtr--;
+					}
+				}
 
+				if (player.transform.position.x - gameObject.transform.position.x > 0 && !isFacingRight) {
+					flip ();
+				} else if (player.transform.position.x - gameObject.transform.position.x < 0 && isFacingRight) {
+					flip ();
+				}
+			}
+		}
 		updateAnimator ();
 	}
 

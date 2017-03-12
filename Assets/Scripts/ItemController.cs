@@ -15,7 +15,11 @@ public class ItemController : MonoBehaviour {
     //Generates an existing or new item
     public void GenerateItem()
     {
+        int generatedItem = Random.Range(0, (items.Count * 2)+1);
+        if(generatedItem > items.Count)
+        {
 
+        }
     }
 	
     //Generates a new item

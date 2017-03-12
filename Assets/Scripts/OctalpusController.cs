@@ -21,6 +21,7 @@ public class OctalpusController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		health = MAX_HEALTH;
+		player = GameObject.FindWithTag ("Player");
 	}
 	
 	// Update is called once per frame
