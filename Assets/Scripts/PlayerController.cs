@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour {
 	IEnumerator Paint() {
 		SpriteRenderer renderer = this.GetComponentInChildren<SpriteRenderer> ();
 		renderer.color = new Color(255, 0, 0, 200);
-		yield return new WaitForSeconds(0.1F);
+		yield return new WaitForSeconds(0.2F);
 		renderer.color = Color.white;
 	}
 }
