@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			
 			if (mana < MAX_MANA) {
-				mana += 0.75f;
+				mana += 0.1f;
 				if (mana > MAX_MANA)
 					mana = MAX_MANA;
 			}
