@@ -5,8 +5,9 @@ using UnityEngine;
 public class ItemController : MonoBehaviour {
     public GameObject[] itemsGO;
     private Item info;
+    private GameObject gameItem;
     private string[] rarityName = { "Common", "Okay I Guess", "Uncommon", "Rare" };
-    private string[] bonusName = { "of Might", "of Memes", "of Speedish", "of Elie", "of Boii" };
+    private string[] bonusName = { "of Might", "of Mass Memes", "of Speedish", "of Elie", "of Boii" };
     private string rn;
     // Use this for initialization
     void Start () {
@@ -30,22 +31,22 @@ public class ItemController : MonoBehaviour {
     //Generates a new item
 	public void GenerateNewItem()
     {
-        int itemType = Random.Range(0, 4);
-        int bonus = Random.Range(0, 6);
-        GameObject gameItem = itemsGO[itemType];
+        int baseDammage = Random.Range(0, 6);
+        Debug.Log("GETS");
+        gameItem = itemsGO[Random.Range(0, 4)];
         Instantiate(gameItem, transform.position, transform.rotation);
         
 
         switch (gameItem.tag)
         {
             case "Weapon":
-                info = new Weapon(bonus, RarityGenerator(), GameManager.levelBonus());
+                info = new Weapon(baseDammage, RarityGenerator(), GameManager.levelBonus());
                 break;
             case "Armor":
-                info = new Armor(bonus, RarityGenerator(), GameManager.levelBonus());
+                info = new Armor(baseDammage, RarityGenerator(), GameManager.levelBonus());
                 break;
         }
-        GameManager.addItem((rn+ gameItem.tag+bonusName[bonus]), info);
+        GameManager.addItem((rn+ gameItem.tag+bonusName[baseDammage]), info);
     }
     string RarityGenerator()
     {
