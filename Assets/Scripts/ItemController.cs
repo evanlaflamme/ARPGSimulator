@@ -7,7 +7,7 @@ public class ItemController : MonoBehaviour {
     private Item info;
     private GameObject gameItem;
     private string[] rarityName = { "Common", "Okay I Guess", "Uncommon", "Rare" };
-    private string[] bonusName = { "of Might", "of Mass Memes", "of Speedish", "of Elie", "of Boii" };
+    private string[] bonusName = { "of Might", "of Mass Memes", "of Speedish", "of Elie", "of Boii", "of Something" };
     private string rn;
     // Use this for initialization
     void Start () {
