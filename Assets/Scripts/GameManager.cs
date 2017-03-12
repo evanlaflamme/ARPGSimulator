@@ -41,13 +41,15 @@ public class GameManager : MonoBehaviour
 	//Update is called every frame.
 	void Update()
 	{
-		if (Input.GetKeyDown (KeyCode.R)) {
-			level++;
-			SceneManager.LoadScene (Application.loadedLevel);
-		}
+		
 	}
 
 	public int getLevel() {
 		return level;
+	}
+
+	public void nextLevel() {
+		level++;
+		SceneManager.LoadScene (Application.loadedLevel);
 	}
 }
