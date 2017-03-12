@@ -78,6 +78,20 @@ class Consumable : Item
 
 class Key : Item
 {
+    private bool isKey;
+    public bool IsKey
+    {
+        get;
+        set;
+    }
+    public Key()
+    {
+        this.isKey = false;
+    }
+    public bool KeyAcquired()
+    {
+        return this.isKey;
+    }
 
 }
 
