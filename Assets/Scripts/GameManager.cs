@@ -53,6 +53,11 @@ public class GameManager : MonoBehaviour
 		return level;
 	}
 
+    public static int levelBonus()
+    {
+        return level;
+    }
+
 	public void nextLevel() {
 		level++;
 		SceneManager.LoadScene (Application.loadedLevel);

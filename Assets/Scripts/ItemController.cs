@@ -39,10 +39,10 @@ public class ItemController : MonoBehaviour {
         switch (gameItem.tag)
         {
             case "Weapon":
-                info = new Weapon(bonus, RarityGenerator(), GameManager.getLevel());
+                info = new Weapon(bonus, RarityGenerator(), GameManager.levelBonus());
                 break;
             case "Armor":
-                info = new Armor(bonus, RarityGenerator(), GameManager.getLevel());
+                info = new Armor(bonus, RarityGenerator(), GameManager.levelBonus());
                 break;
         }
         GameManager.addItem((rn+ gameItem.tag+bonusName[bonus]), info);
