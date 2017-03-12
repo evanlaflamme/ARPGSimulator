@@ -73,14 +73,14 @@ public class PlayerController : MonoBehaviour {
 				isCleave = true;
 				cleaveCtr = CLEAVE_LAG;
 			}
-			if (Input.GetKey (KeyCode.Q) && dashCtr == 0 && cleaveCtr == 0 && bashCtr == 0 && mana >= 60 && leapCtr == 0) {
+			if (Input.GetKey (KeyCode.Q) && dashCtr == 0 && cleaveCtr == 0 && bashCtr == 0 && mana >= 20 && leapCtr == 0) {
 				print ("Bash.");
 				anim.Play ("HeavyAttack");
 				isBash = true;
 				bashCtr = BASH_LAG;
-				mana -= 60;
+				mana -= 20;
 			}
-			if (Input.GetKeyDown (KeyCode.W) && dashCtr == 0 && cleaveCtr == 0 && bashCtr == 0 && mana >= 100 && leapCtr == 0) {
+			if (Input.GetKeyDown (KeyCode.W) && dashCtr == 0 && cleaveCtr == 0 && bashCtr == 0 && mana >= 50 && leapCtr == 0) {
 				print ("Dash.");
 				isDash = true;
 				dashCtr = DASH_LAG;
@@ -92,11 +92,11 @@ public class PlayerController : MonoBehaviour {
 				leapCtr = LEAP_LAG;
 				mana -= 200;
 			}
-			if (Input.GetKey (KeyCode.Alpha1)) {
+			if (Input.GetKeyDown (KeyCode.Alpha1)) {
 				if (hp.Quantity > 0)
 					health = hp.usePot (MAX_HEALTH);
 			}
-			if (Input.GetKey (KeyCode.Alpha2)) {
+			if (Input.GetKeyDown (KeyCode.Alpha2)) {
 				if (mp.Quantity > 0)
 					mana = mp.usePot (MAX_MANA);
 			}
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			
 			if (mana < MAX_MANA) {
-				mana += 0.75f;
+				mana += 0.1f;
 				if (mana > MAX_MANA)
 					mana = MAX_MANA;
 			}
@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour {
 				mouseDir = mouseDir.normalized;
 
 				rb.AddForce (mouseDir * 3000);
-				mana -= 100;
+				mana -= 50;
 				isDash = false;
 			}
 
