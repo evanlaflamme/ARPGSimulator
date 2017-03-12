@@ -49,6 +49,10 @@ public class BoardCreator : MonoBehaviour
 		//Instantiate (hud);
 	}
 
+	public void ResetBoard() {
+		Destroy (boardHolder);
+		Start ();
+	}
 
 	void SetupTilesArray ()
 	{
@@ -137,7 +141,8 @@ public class BoardCreator : MonoBehaviour
 
 					if (i == rooms.Length - 1 &&
 					    j == currentRoom.roomWidth / 2 && //Middle of room
-					    k == currentRoom.roomHeight - 1) { //Top of room
+						k == currentRoom.roomHeight - 1 && //Top of room
+						yCoord < currentRoom.roomHeight + k) { 
 						tiles [xCoord] [yCoord + 1] = TileType.Door;
 					}
 

@@ -162,6 +162,7 @@ public class PlayerController : MonoBehaviour {
 		return (int)(Random.Range(20, 30) * multiplier);
 	}
 
+<<<<<<< HEAD
 	private void updateHud () {
 		Vector3 hpScale = healthBar.localScale;
 		hpScale.x = (float)health / (float)MAX_HEALTH;  
@@ -174,11 +175,22 @@ public class PlayerController : MonoBehaviour {
 		manaText.text = "Mana: " + (int)mana + "/200";
 	}
 
+=======
+>>>>>>> f54f1b6b70233ebaca855a088196db68754f23d8
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.CompareTag ("OctalpusHit")) {
+			StartCoroutine (Paint ());
 			damage (100);
 		} else if (other.gameObject.CompareTag ("ZombieHit")) {
+			StartCoroutine (Paint ());
 			damage (20);
 		}
+	}
+
+	IEnumerator Paint() {
+		SpriteRenderer renderer = this.GetComponentInChildren<SpriteRenderer> ();
+		renderer.color = new Color(255, 0, 0, 200);
+		yield return new WaitForSeconds(0.1F);
+		renderer.color = Color.white;
 	}
 }
