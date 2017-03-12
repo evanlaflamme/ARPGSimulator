@@ -73,14 +73,14 @@ public class PlayerController : MonoBehaviour {
 				isCleave = true;
 				cleaveCtr = CLEAVE_LAG;
 			}
-			if (Input.GetKey (KeyCode.Q) && dashCtr == 0 && cleaveCtr == 0 && bashCtr == 0 && mana >= 60 && leapCtr == 0) {
+			if (Input.GetKey (KeyCode.Q) && dashCtr == 0 && cleaveCtr == 0 && bashCtr == 0 && mana >= 20 && leapCtr == 0) {
 				print ("Bash.");
 				anim.Play ("HeavyAttack");
 				isBash = true;
 				bashCtr = BASH_LAG;
-				mana -= 60;
+				mana -= 20;
 			}
-			if (Input.GetKeyDown (KeyCode.W) && dashCtr == 0 && cleaveCtr == 0 && bashCtr == 0 && mana >= 100 && leapCtr == 0) {
+			if (Input.GetKeyDown (KeyCode.W) && dashCtr == 0 && cleaveCtr == 0 && bashCtr == 0 && mana >= 50 && leapCtr == 0) {
 				print ("Dash.");
 				isDash = true;
 				dashCtr = DASH_LAG;
@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour {
 				mouseDir = mouseDir.normalized;
 
 				rb.AddForce (mouseDir * 3000);
-				mana -= 100;
+				mana -= 50;
 				isDash = false;
 			}
 
