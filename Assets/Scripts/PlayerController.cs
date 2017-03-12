@@ -92,8 +92,7 @@ public class PlayerController : MonoBehaviour {
 			if (bashCtr > 0) {
 				bashCtr--;
 			}
-
-
+				
 			if (leapCtr > 0) {
 				leapCtr--;
 			}
@@ -162,18 +161,33 @@ public class PlayerController : MonoBehaviour {
 		return (int)(Random.Range(20, 30) * multiplier);
 	}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9e3959b6e143b11476a814e6d654dd7e028832fe
 	private void updateHud () {
 		Vector3 hpScale = healthBar.localScale;
 		hpScale.x = (float)health / (float)MAX_HEALTH;  
 		healthBar.localScale = hpScale;
+<<<<<<< HEAD
 		healthText.text = "Health:\n " + health + "/1000";
+=======
+		healthText.text = "Health: \n" + health + "/1000";
+>>>>>>> 9e3959b6e143b11476a814e6d654dd7e028832fe
 
 		Vector3 manaScale = manaBar.localScale;
 		manaScale.x = (float)mana / (float)MAX_MANA;  
 		manaBar.localScale = manaScale;
+<<<<<<< HEAD
 		manaText.text = "Mana:\n " + (int)mana + "/200";
 	}
 		
+=======
+		manaText.text = "Mana: \n" + (int)mana + "/200";
+	}
+
+
+>>>>>>> 9e3959b6e143b11476a814e6d654dd7e028832fe
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.CompareTag ("OctalpusHit")) {
 			StartCoroutine (Paint ());
@@ -187,7 +201,7 @@ public class PlayerController : MonoBehaviour {
 	IEnumerator Paint() {
 		SpriteRenderer renderer = this.GetComponentInChildren<SpriteRenderer> ();
 		renderer.color = new Color(255, 0, 0, 200);
-		yield return new WaitForSeconds(0.1F);
+		yield return new WaitForSeconds(0.2F);
 		renderer.color = Color.white;
 	}
 }
