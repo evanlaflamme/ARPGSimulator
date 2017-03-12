@@ -32,7 +32,6 @@ public class ItemController : MonoBehaviour {
 	public void GenerateNewItem()
     {
         int baseDammage = Random.Range(0, 6);
-        Debug.Log("GETS");
         gameItem = itemsGO[Random.Range(0, 4)];
         Instantiate(gameItem, transform.position, transform.rotation);
         
@@ -48,6 +47,7 @@ public class ItemController : MonoBehaviour {
         }
         GameManager.addItem((rn+ gameItem.tag+bonusName[baseDammage]), info);
     }
+    public 
     string RarityGenerator()
     {
         string rarity = "";
