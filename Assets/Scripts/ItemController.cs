@@ -3,14 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemController : MonoBehaviour {
-
     private Hashtable items = new Hashtable();
-	// Use this for initialization
-	void Start () {
+    public GameObject[] itemsGO;
+    private Item info;
+
+    // Use this for initialization
+    void Start () {
 
 	}
+
+    //Generates an existing or new item
+    public void GenerateItem()
+    {
+
+    }
 	
+    //Generates a new item
 	public void GenerateNewItem()
+    {
+        int itemType = Random.Range(0, 4);
+        GameObject gameItem = itemsGO[itemType];
+        Instantiate(gameItem, transform.position, transform.rotation);
+        
+
+        switch (gameItem.tag)
+        {
+            case "Weapon":
+                info = new Weapon(Random.Range(0, 6), RarityGenerator(), 1);
+                break;
+            case "Armor":
+                info = new Armor(Random.Range(0, 6), RarityGenerator(), 1);
+                break;
+            case "HealthPot":
+                info = new HealthPot(1);
+                break;
+            default:
+                info = new ManaPot(1);
+                break;
+        }
+        items.Add(gameItem, info);
+    }
+    string RarityGenerator()
     {
         string rarity = "";
         int itemRarity = Random.Range(0, 101);
@@ -22,37 +55,6 @@ public class ItemController : MonoBehaviour {
             rarity = "Blue";
         else if (itemRarity <= 100 && itemRarity > 95)
             rarity = "Purple";
-
-        Item info;
-        GameObject gameItem;
-        gameItem.transform.position = transform.position;
-        gameItem.transform.rotation = transform.rotation;
-
-        switch (Random.Range(0,4))
-        {
-
-            case 0:
-                gameItem = (GameObject) Instantiate(GameObject.FindGameObjectWithTag("Weapon"));
-                info = new Weapon(Random.Range(0, 6), rarity, 1);
-                items.Add(gameItem, info);
-                break;
-            case 1:
-                gameItem = (GameObject)Instantiate(GameObject.FindGameObjectWithTag("Armor"));
-                info = new Armor(Random.Range(0, 6), rarity, 1);
-                items.Add(gameItem, info);
-                break;
-            case 2:
-                gameItem = (GameObject)Instantiate(GameObject.FindGameObjectWithTag("HealthPot"));
-                info = new HealthPot(1);
-                items.Add(gameItem, info);
-                break;
-            case 3:
-                gameItem = (GameObject)Instantiate(GameObject.FindGameObjectWithTag("Weapon"));
-                info = new ManaPot(1);
-                items.Add(gameItem, info);
-                break;
-        }
-        gameItem.transform.position = transform.position;
-        gameItem.transform.rotation = transform.rotation;
+        return rarity;
     }
 }
