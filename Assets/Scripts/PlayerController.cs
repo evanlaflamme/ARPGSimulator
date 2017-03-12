@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
 	public Transform manaBar;
 	public Text healthText;
 	public Text manaText;
+	public Text gameOverDialog;
     private HealthPots hp = new HealthPots(1);
     private ManaPots mp = new ManaPots(1);
 
@@ -140,9 +141,9 @@ public class PlayerController : MonoBehaviour {
 				rb.velocity = rb.velocity.normalized * maxSpeed;
 			}
 			
-			if (Camera.main.ScreenToWorldPoint (Input.mousePosition).x - trans.position.x > 0 && !isFacingRight && dashCtr == 0) {
+			if (Camera.main.ScreenToWorldPoint (Input.mousePosition).x - gameObject.transform.position.x > 0 && !isFacingRight && dashCtr == 0) {
 				flip ();
-			} else if (Camera.main.ScreenToWorldPoint (Input.mousePosition).x - trans.position.x < 0 && isFacingRight && dashCtr == 0) {
+			} else if (Camera.main.ScreenToWorldPoint (Input.mousePosition).x - gameObject.transform.position.x < 0 && isFacingRight && dashCtr == 0) {
 				flip ();
 			}
 		}
@@ -160,6 +161,7 @@ public class PlayerController : MonoBehaviour {
 		health = health - dmg;
 		if (health == 0) {
 			isDead = true;
+			gameOverDialog.text = "GAME OVER";
 			updateAnimator ();
 		}
 	}
