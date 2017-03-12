@@ -98,7 +98,7 @@ public class BoardCreator : MonoBehaviour
 				rooms[i].SetupRoom (roomWidth, roomHeight, columns, rows, corridors[i - 1]);
 			}
 
-			for (int j = 0; j < (rooms[i].roomWidth * rooms[i].roomHeight) / 15 * (1 + (0.5 * gameManager.getLevel())); j++) {
+			for (int j = 0; j < (rooms[i].roomWidth * rooms[i].roomHeight) / 15 * (1 + (0.5 * (gameManager.getLevel() - 1))); j++) {
 				Vector3 enemyPos = new Vector3 (rooms[i].xPos + UnityEngine.Random.Range(0, rooms[i].roomWidth), rooms[i].yPos + UnityEngine.Random.Range(0, rooms[i].roomHeight), 0);
 				Instantiate(enemy, enemyPos, Quaternion.identity);
 			}

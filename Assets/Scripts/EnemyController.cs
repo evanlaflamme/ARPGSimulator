@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +11,7 @@ public class EnemyController : MonoBehaviour {
     public GameObject[] items;
     public ItemController ic;
 
-    private const int MAX_HEALTH = 200;
-	public int health = MAX_HEALTH;
+	public int health = 200;
 
 	public float range;
 	public float attackRange;
@@ -24,6 +24,9 @@ public class EnemyController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
+		GameManager gm = GameObject.FindWithTag ("GameController").GetComponent<GameManager> ();
+
+		health = Convert.ToInt32(health * (1 + 0.2f * gm.getLevel ()));
 	}
 	
 	// Update is called once per frame
@@ -39,7 +42,7 @@ public class EnemyController : MonoBehaviour {
 					//Attack
 					if (attackCtr == 0) {
 						anim.Play ("EnemyAttack");
-						attackCtr = (int)Random.Range (50, 100);
+						attackCtr = (int)UnityEngine.Random.Range (50, 100);
 					}
 
 					if (attackCtr > 0) {
@@ -104,10 +107,6 @@ public class EnemyController : MonoBehaviour {
 
     void Dead()
     {
-        if(gameObject.CompareTag("Manny"))
-        {
-            ic.GenerateKey();
-        }
         if (health <= 0)
         {
             ic.GenerateNewItem();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OctalpusController : MonoBehaviour {
 	private Vector3 targetPosition;
-	private const int MAX_HEALTH = 1000;
+	private const int MAX_HEALTH = 5;
 	public int health;
 
 	private const int ATTACK_LAG = 300;
@@ -16,10 +16,12 @@ public class OctalpusController : MonoBehaviour {
 	public float range;
 	public float attackRange;
 	public bool isDead = false;
+    public ItemController ic1;
+    public ItemController ic2;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		health = MAX_HEALTH;
 		player = GameObject.FindWithTag ("Player");
 	}
@@ -52,13 +54,17 @@ public class OctalpusController : MonoBehaviour {
 		anim.SetBool ("isDead", isDead);
 	}
 
-	void damage(int dmg) {
-		health -= dmg;
-		if (health <= 0)
-			isDead = true;
-	}
+    void damage(int dmg)
+    {
+        health = health - dmg;
+        if (health <= 0)
+        {
+            isDead = true;
+            Dead();
+        }
+    }
 
-	void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("Cleave")) {
 			PlayerController source = other.gameObject.GetComponentInParent<PlayerController> ();
 			StartCoroutine (Paint ());
@@ -88,4 +94,14 @@ public class OctalpusController : MonoBehaviour {
 		yield return new WaitForSeconds(0.2F);
 		renderer.color = Color.white;
 	}
+
+    void Dead()
+    {
+        
+        if (health <= 0)
+        {
+            ic1.GenerateNewItem();
+            ic2.GenerateKey();
+        }
+    }
 }

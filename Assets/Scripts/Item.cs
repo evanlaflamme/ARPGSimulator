@@ -17,7 +17,7 @@ class Equipment : Item
         this.baseStat = baseStat;
         this.rarity = rarity;
         this.levelBonus = levelBonus;
-        this.bonus = (baseStat + RarityBonus(rarity)) * levelBonus;
+		this.bonus = Convert.ToInt32((baseStat + RarityBonus(rarity)) * (1 + 0.2f * levelBonus));
     }
     public virtual int ApplyBonus(int stat)
     {
