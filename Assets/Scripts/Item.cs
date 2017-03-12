@@ -17,7 +17,7 @@ class Equipment : Item
         this.baseBonus = baseBonus;
         this.rarity = rarity;
         this.levelBonus = levelBonus;
-        this.bonus = (baseBonus + RarityBonus(rarity)) * levelBonus;
+		this.bonus = (baseBonus + RarityBonus(rarity)) * (1 + 0.2 * levelBonus);
     }
     public virtual int ApplyBonus(int stat)
     {
