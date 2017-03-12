@@ -215,12 +215,16 @@ public class PlayerController : MonoBehaviour {
             hp.addPot();
             Debug.Log("Health: " +hp.Quantity);
         }
-        if (collision.gameObject.CompareTag("ManaPot"))
+        else if (collision.gameObject.CompareTag("ManaPot"))
         {
             mp.addPot();
             Debug.Log("Mana: " + mp.Quantity);
         }
-        if(collision.gameObject.CompareTag("Key"))
+        else if (collision.gameObject.CompareTag("Weapon"))
+        {
+
+        }
+        else if(collision.gameObject.CompareTag("Key"))
         {
             key.IsKey = true;
         }
