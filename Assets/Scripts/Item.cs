@@ -19,6 +19,10 @@ class Equipment : Item
         this.levelBonus = levelBonus;
         this.bonus = (baseBonus + RarityBonus(rarity)) * levelBonus;
     }
+    public virtual int ApplyBonus(int stat)
+    {
+        return 0;
+    }
     public virtual int RarityBonus(string rarity)
     {
         switch (rarity)
@@ -103,6 +107,10 @@ class Weapon: Equipment
     public Weapon(int baseBonus, string rarity, int levelBonus) : base(baseBonus, rarity, levelBonus)
     {
     }
+    public int applyBonus(int stat)
+    {
+        return stat + bonus;
+    }
 }
 
 class Armor: Equipment
@@ -112,6 +120,11 @@ class Armor: Equipment
 
     public Armor(int baseBonus, string rarity, int levelBonus) : base(baseBonus, rarity, levelBonus)
     {
+    }
+
+    public int applyBonus(int stat)
+    {
+        return stat -bonus;
     }
 }
 
