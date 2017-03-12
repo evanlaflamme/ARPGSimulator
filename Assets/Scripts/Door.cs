@@ -14,6 +14,5 @@ public class Door : MonoBehaviour {
 				gm.nextLevel ();
 			}
 		}
-
 	}
 }
