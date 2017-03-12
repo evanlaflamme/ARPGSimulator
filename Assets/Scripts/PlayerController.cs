@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour {
 
     private HealthPots hp = new HealthPots(1);
     private ManaPots mp = new ManaPots(1);
-    private Key key = new Key();
 
     private const int MAX_HEALTH = 1000;
 	private const int MAX_MANA = 200;
@@ -47,6 +46,8 @@ public class PlayerController : MonoBehaviour {
 	public bool isMoving = false;
 	public bool isDead = false;
 	public bool isFacingRight = true;
+
+	public bool hasKey = false;
 
 	void Start () {
 		gameManager = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameManager> ();
@@ -125,7 +126,7 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.R)) {
 				gameManager.ResetGame ();
 			}
-			if (Input.GetKeyDown (KeyCode.Q)) {
+			if (Input.GetKeyDown (KeyCode.Escape)) {
 				gameManager.ExitGame ();
 			}
 		}
@@ -174,7 +175,7 @@ public class PlayerController : MonoBehaviour {
 		health = health - dmg;
 		if (health == 0) {
 			isDead = true;
-			gameOverDialog.text = "GAME OVER\nPress 'R' to restart or 'Q' to quit.";
+			gameOverDialog.text = "GAME OVER\nPress 'R' to restart or 'ESC' to quit.";
 			updateAnimator ();
 		}
 	}
@@ -204,14 +205,15 @@ public class PlayerController : MonoBehaviour {
 	}
 		
 	void OnTriggerEnter2D (Collider2D other) {
-		if (other.gameObject.CompareTag ("OctalpusHit")) {
-			StartCoroutine (Paint ());
-			damage (100);
-		} else if (other.gameObject.CompareTag ("ZombieHit")) {
-			StartCoroutine (Paint ());
-			damage (20);
+		if (!isDead) {
+			if (other.gameObject.CompareTag ("OctalpusHit")) {
+				StartCoroutine (Paint ());
+				damage (100);
+			} else if (other.gameObject.CompareTag ("ZombieHit")) {
+				StartCoroutine (Paint ());
+				damage (20);
+			}
 		}
-
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -230,7 +232,7 @@ public class PlayerController : MonoBehaviour {
             case "Armor":
                 break;
             case "Key":
-                key.IsKey = true;
+                hasKey = true;
                 break;
         }
     }
