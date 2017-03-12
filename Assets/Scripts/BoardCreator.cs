@@ -98,7 +98,7 @@ public class BoardCreator : MonoBehaviour
 				rooms[i].SetupRoom (roomWidth, roomHeight, columns, rows, corridors[i - 1]);
 			}
 
-			for (int j = 0; j < (rooms[i].roomWidth * rooms[i].roomHeight) / 15; j++) {
+			for (int j = 0; j < (rooms[i].roomWidth * rooms[i].roomHeight) / 15 * (1 + (0.5 * gameManager.getLevel())); j++) {
 				Vector3 enemyPos = new Vector3 (rooms[i].xPos + UnityEngine.Random.Range(0, rooms[i].roomWidth), rooms[i].yPos + UnityEngine.Random.Range(0, rooms[i].roomHeight), 0);
 				Instantiate(enemy, enemyPos, Quaternion.identity);
 			}
@@ -135,10 +135,10 @@ public class BoardCreator : MonoBehaviour
 
 					if (i == rooms.Length - 1) {
 						if (j == currentRoom.roomWidth / 2 && k == currentRoom.roomHeight - 1) {
-							if (yCoord < 100) {
+							if (xCoord < rows && yCoord < columns) {
 								tiles [xCoord] [yCoord + 1] = TileType.Door;
 							} else {
-								tiles [xCoord] [yCoord] = TileType.Door;
+								tiles [xCoord - 1] [yCoord] = TileType.Door;
 							}
 						}
 					}
