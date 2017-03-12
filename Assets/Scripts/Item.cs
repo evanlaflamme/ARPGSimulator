@@ -8,20 +8,25 @@ public abstract class Item : MonoBehaviour {
 
 class Equipment : Item
 {
-    private int baseBonus, bonus;
+    private int baseStat, bonus;
     private float levelBonus;
     private string rarity;
 
-    public Equipment(int baseBonus, string rarity, int levelBonus)
+    public Equipment(int baseStat, string rarity, int levelBonus)
     {
-        this.baseBonus = baseBonus;
+        this.baseStat = baseStat;
         this.rarity = rarity;
         this.levelBonus = levelBonus;
-        this.bonus = (baseBonus + RarityBonus(rarity)) * levelBonus;
+        this.bonus = (baseStat + RarityBonus(rarity)) * levelBonus;
     }
     public virtual int ApplyBonus(int stat)
     {
         return 0;
+    }
+
+    public int getBonusPercent()
+    {
+        return bonus / baseStat * 100;
     }
     public virtual int RarityBonus(string rarity)
     {
@@ -35,6 +40,9 @@ class Equipment : Item
                 break;
             case "Purple":
                 bonus += 10;
+                break;
+            case "Orange":
+                bonus += 15;
                 break;
             default:
                 break;
@@ -100,11 +108,11 @@ class Key : Item
 
 class Weapon: Equipment
 {
-    private int baseBonus, bonus;
+    private int baseDammage, bonus;
     private float levelBonus;
     private string rarity;
 
-    public Weapon(int baseBonus, string rarity, int levelBonus) : base(baseBonus, rarity, levelBonus)
+    public Weapon(int baseDammage, string rarity, int levelBonus) : base(baseDammage, rarity, levelBonus)
     {
     }
     public int applyBonus(int stat)
@@ -115,10 +123,10 @@ class Weapon: Equipment
 
 class Armor: Equipment
 {
-    private int baseBonus, bonus;
+    private int baseDammage, bonus;
     private string rarity;
 
-    public Armor(int baseBonus, string rarity, int levelBonus) : base(baseBonus, rarity, levelBonus)
+    public Armor(int baseDammage, string rarity, int levelBonus) : base(baseDammage, rarity, levelBonus)
     {
     }
 

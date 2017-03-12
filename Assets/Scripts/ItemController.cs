@@ -45,14 +45,13 @@ public class ItemController : MonoBehaviour {
                 info = new Armor(baseDammage, RarityGenerator(), GameManager.levelBonus());
                 break;
         }
-        GameManager.addItem((rn+ gameItem.tag+bonusName[baseDammage]), info);
+        //GameManager.addItem((rn+ gameItem.tag+bonusName[baseDammage]), info);
     }
 
     public void GenerateKey()
     {
-
+        Instantiate(itemsGO[4], transform.position, transform.rotation);
     }
-    public 
     string RarityGenerator()
     {
         string rarity = "";

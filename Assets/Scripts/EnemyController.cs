@@ -104,6 +104,10 @@ public class EnemyController : MonoBehaviour {
 
     void Dead()
     {
+        if(gameObject.CompareTag("Manny"))
+        {
+            ic.GenerateKey();
+        }
         if (health <= 0)
         {
             ic.GenerateNewItem();
