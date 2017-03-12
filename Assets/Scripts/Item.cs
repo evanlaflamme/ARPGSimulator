@@ -102,20 +102,19 @@ class Armor: Equipment
     }
 }
 
-class HealthPot: Consumable
+class HealthPots: Consumable
 {
     private int baseHeal, levelBonus, totalHeal;
-    public HealthPot(int levelBonus) : base(levelBonus)
+    public HealthPots(int levelBonus) : base(levelBonus)
     {
     }
 }
 
-class ManaPot : Consumable
+class ManaPots : Consumable
 {
     private int baseHeal, levelBonus, totalHeal;
     
-
-    public ManaPot(int levelBonus) : base(levelBonus)
+    public ManaPots(int levelBonus) : base(levelBonus)
     {
     }
 }
