@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OctalpusController : MonoBehaviour {
 	private Vector3 targetPosition;
-	private const int MAX_HEALTH = 5;
+	private const int MAX_HEALTH = 1000;
 	public int health;
 
 	private const int ATTACK_LAG = 300;

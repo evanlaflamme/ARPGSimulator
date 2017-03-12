@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyController : MonoBehaviour {
 
@@ -27,6 +28,7 @@ public class EnemyController : MonoBehaviour {
 		GameManager gm = GameObject.FindWithTag ("GameController").GetComponent<GameManager> ();
 
 		health = Convert.ToInt32(health * (1 + 0.2f * gm.getLevel ()));
+
 	}
 	
 	// Update is called once per frame
