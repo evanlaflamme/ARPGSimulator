@@ -46,9 +46,33 @@ class Consumable : Item
 {
 
     private int baseHeal, levelBonus, totalHeal;
+    private int quantity;
+    public int Quantity
+    {
+        get
+        {
+            return this.quantity;
+        }
+        set
+        {
+            this.quantity = value;
+        }
+    }
     public Consumable (int levelBonus)
     {
         this.totalHeal = baseHeal * levelBonus;
+    }
+    
+
+    public void addPot()
+    {
+        this.quantity++;
+    }
+
+    public int usePot(int currentValue)
+    {
+        quantity--;
+        return currentValue + totalHeal;
     }
 }
 
@@ -78,18 +102,19 @@ class Armor: Equipment
     }
 }
 
-class HealthPot: Consumable
+class HealthPots: Consumable
 {
     private int baseHeal, levelBonus, totalHeal;
-    public HealthPot(int levelBonus) : base(levelBonus)
+    public HealthPots(int levelBonus) : base(levelBonus)
     {
     }
 }
 
-class ManaPot : Consumable
+class ManaPots : Consumable
 {
     private int baseHeal, levelBonus, totalHeal;
-    public ManaPot(int levelBonus) : base(levelBonus)
+    
+    public ManaPots(int levelBonus) : base(levelBonus)
     {
     }
 }

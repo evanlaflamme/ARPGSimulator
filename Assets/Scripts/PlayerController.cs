@@ -14,8 +14,10 @@ public class PlayerController : MonoBehaviour {
 	public Transform manaBar;
 	public Text healthText;
 	public Text manaText;
+    private HealthPots hp = new HealthPots(1);
+    private ManaPots mp = new ManaPots(1);
 
-	private const int MAX_HEALTH = 1000;
+    private const int MAX_HEALTH = 1000;
 	private const int MAX_MANA = 200;
 	public int health = MAX_HEALTH;
 	public float mana = MAX_MANA;
@@ -183,7 +185,21 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	IEnumerator Paint() {
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("HealthPot"))
+        {
+            hp.addPot();
+            Debug.Log("Health: " +hp.Quantity);
+        }
+        if (collision.gameObject.CompareTag("ManaPot"))
+        {
+            mp.addPot();
+            Debug.Log("Mana: " + mp.Quantity);
+        }
+    }
+
+    IEnumerator Paint() {
 		SpriteRenderer renderer = this.GetComponentInChildren<SpriteRenderer> ();
 		renderer.color = new Color(255, 0, 0, 200);
 		yield return new WaitForSeconds(0.2F);

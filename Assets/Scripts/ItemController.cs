@@ -18,7 +18,11 @@ public class ItemController : MonoBehaviour {
         int generatedItem = Random.Range(0, (items.Count * 2)+1);
         if(generatedItem > items.Count)
         {
-
+            GenerateNewItem();
+        }
+        else
+        {
+            //Instantiate(items, transform.position, transform.rotation);
         }
     }
 	
@@ -39,10 +43,10 @@ public class ItemController : MonoBehaviour {
                 info = new Armor(Random.Range(0, 6), RarityGenerator(), 1);
                 break;
             case "HealthPot":
-                info = new HealthPot(1);
+                info = new HealthPots(1);
                 break;
             default:
-                info = new ManaPot(1);
+                info = new ManaPots(1);
                 break;
         }
         items.Add(gameItem, info);
