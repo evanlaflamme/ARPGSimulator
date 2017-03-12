@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-	public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
-	private static int level = 1;                                  //Current level number, expressed in game as "Day 1".
+	public static GameManager instance = null;              		//Static instance of GameManager which allows it to be accessed by any other script.
+	private static int level = 1;                                   //Current level number, expressed in game as "Day 1".
 
 	//Awake is always called before any Start functions
 	void Awake()
