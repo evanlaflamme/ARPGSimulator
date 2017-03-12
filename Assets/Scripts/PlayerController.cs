@@ -216,23 +216,22 @@ public class PlayerController : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("HealthPot"))
+        string name = collision.gameObject.tag;
+        switch (name)
         {
-            hp.addPot();
-            Debug.Log("Health: " +hp.Quantity);
-        }
-        else if (collision.gameObject.CompareTag("ManaPot"))
-        {
-            mp.addPot();
-            Debug.Log("Mana: " + mp.Quantity);
-        }
-        else if (collision.gameObject.CompareTag("Weapon"))
-        {
-
-        }
-        else if(collision.gameObject.CompareTag("Key"))
-        {
-            key.IsKey = true;
+            case "HealthPot":
+                hp.addPot();
+                break;
+            case "ManaPot":
+                mp.addPot();
+                break;
+            case "Weapon":
+                break;
+            case "Armor":
+                break;
+            case "Key":
+                key.IsKey = true;
+                break;
         }
     }
 
