@@ -133,19 +133,13 @@ public class BoardCreator : MonoBehaviour
 				{
 					int yCoord = currentRoom.yPos + k;
 
-					if (i == rooms.Length - 1) {
-						if (j == currentRoom.roomWidth / 2 && k == currentRoom.roomHeight - 1) {
-							if (xCoord < rows && yCoord < columns) {
-								tiles [xCoord] [yCoord + 1] = TileType.Door;
-							} else {
-								tiles [xCoord - 1] [yCoord] = TileType.Door;
-							}
-						}
-					}
-
 					// The coordinates in the jagged array are based on the room's position and it's width and height.
-					tiles [xCoord] [yCoord] = TileType.Floor;
-
+					if (i == rooms.Length - 1 && j == (currentRoom.roomWidth / 2) && k == currentRoom.roomHeight - 1) {
+						tiles [xCoord] [yCoord] = TileType.Door;
+						print ("Door!");
+					} else {
+						tiles [xCoord] [yCoord] = TileType.Floor;
+					}
 				}
 			}
 		}
