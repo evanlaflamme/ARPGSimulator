@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.R)) {
 				gameManager.ResetGame ();
 			}
-			if (Input.GetKeyDown (KeyCode.Q)) {
+			if (Input.GetKeyDown (KeyCode.Escape)) {
 				gameManager.ExitGame ();
 			}
 		}
@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour {
 		health = health - dmg;
 		if (health == 0) {
 			isDead = true;
-			gameOverDialog.text = "GAME OVER\nPress 'R' to restart or 'Q' to quit.";
+			gameOverDialog.text = "GAME OVER\nPress 'R' to restart or 'ESC' to quit.";
 			updateAnimator ();
 		}
 	}
