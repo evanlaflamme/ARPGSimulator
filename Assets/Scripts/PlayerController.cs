@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
-	//private Vector3 targetPosition;
+	private GameManager gameManager;
 
 	public Rigidbody2D rb;
 	public Transform trans;
@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour {
 	public bool isMoving = false;
 	public bool isDead = false;
 	public bool isFacingRight = true;
+
+	void Start () {
+		gameManager = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameManager> ();
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -84,18 +88,16 @@ public class PlayerController : MonoBehaviour {
 				leapCtr = LEAP_LAG;
 				mana -= 200;
 			}
-            if(Input.GetKey (KeyCode.Alpha1))
-            {
-                if(hp.Quantity > 0)
-                    health = hp.usePot(MAX_HEALTH);
-            }
-            if(Input.GetKey(KeyCode.Alpha2))
-            {
-                if (mp.Quantity > 0)
-                    mana = mp.usePot(MAX_MANA);
-            }
+			if (Input.GetKey (KeyCode.Alpha1)) {
+				if (hp.Quantity > 0)
+					health = hp.usePot (MAX_HEALTH);
+			}
+			if (Input.GetKey (KeyCode.Alpha2)) {
+				if (mp.Quantity > 0)
+					mana = mp.usePot (MAX_MANA);
+			}
 
-            if (dashCtr > 0) {
+			if (dashCtr > 0) {
 				dashCtr--;
 			} 
 
@@ -115,6 +117,13 @@ public class PlayerController : MonoBehaviour {
 				mana += 0.75f;
 				if (mana > MAX_MANA)
 					mana = MAX_MANA;
+			}
+		} else {
+			if (Input.GetKeyDown (KeyCode.R)) {
+				gameManager.ResetGame ();
+			}
+			if (Input.GetKeyDown (KeyCode.Q)) {
+				gameManager.ExitGame ();
 			}
 		}
 		updateHud ();
@@ -162,7 +171,7 @@ public class PlayerController : MonoBehaviour {
 		health = health - dmg;
 		if (health == 0) {
 			isDead = true;
-			gameOverDialog.text = "GAME OVER";
+			gameOverDialog.text = "GAME OVER\nPress 'R' to restart or 'Q' to quit.";
 			updateAnimator ();
 		}
 	}
