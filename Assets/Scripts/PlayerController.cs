@@ -162,21 +162,18 @@ public class PlayerController : MonoBehaviour {
 		return (int)(Random.Range(20, 30) * multiplier);
 	}
 
-<<<<<<< HEAD
 	private void updateHud () {
 		Vector3 hpScale = healthBar.localScale;
 		hpScale.x = (float)health / (float)MAX_HEALTH;  
 		healthBar.localScale = hpScale;
-		healthText.text = "Health: " + health + "/1000";
+		healthText.text = "Health:\n " + health + "/1000";
 
 		Vector3 manaScale = manaBar.localScale;
 		manaScale.x = (float)mana / (float)MAX_MANA;  
 		manaBar.localScale = manaScale;
-		manaText.text = "Mana: " + (int)mana + "/200";
+		manaText.text = "Mana:\n " + (int)mana + "/200";
 	}
-
-=======
->>>>>>> f54f1b6b70233ebaca855a088196db68754f23d8
+		
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.CompareTag ("OctalpusHit")) {
 			StartCoroutine (Paint ());
