@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 	public Text manaPotText;
 	public Text weaponText;
 	public Text armorText;
+	public Text levelText;
 
     private HealthPots hp = new HealthPots(1);
     private ManaPots mp = new ManaPots(1);
@@ -200,10 +201,12 @@ public class PlayerController : MonoBehaviour {
 		Vector3 manaScale = manaBar.localScale;
 		manaScale.x = (float)mana / (float)MAX_MANA;  
 		manaBar.localScale = manaScale;
-		manaText.text = "Mana: \n" + (int)mana + "/200";
+		manaText.text = "Mana:\n" + (int)mana + "/200";
 
 		hpPotText.text = hp.Quantity.ToString ();
 		manaPotText.text = mp.Quantity.ToString ();
+
+		levelText.text = "Level: " + gameManager.getLevel ();
 	}
 		
 	void OnTriggerEnter2D (Collider2D other) {
