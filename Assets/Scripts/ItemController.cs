@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemController : MonoBehaviour {
-    private Hashtable items = new Hashtable();
     public GameObject[] itemsGO;
-    private Item info;
+    private Item info, items;
 
     // Use this for initialization
     void Start () {
@@ -15,8 +14,8 @@ public class ItemController : MonoBehaviour {
     //Generates an existing or new item
     public void GenerateItem()
     {
-        int generatedItem = Random.Range(0, (items.Count * 2)+1);
-        if(generatedItem > items.Count)
+        int generatedItem = Random.Range(0, (items.Items.Count * 2)+1);
+        if(generatedItem > items.Items.Count)
         {
             GenerateNewItem();
         }
@@ -42,14 +41,8 @@ public class ItemController : MonoBehaviour {
             case "Armor":
                 info = new Armor(Random.Range(0, 6), RarityGenerator(), 1);
                 break;
-            case "HealthPot":
-                info = new HealthPots(1);
-                break;
-            default:
-                info = new ManaPots(1);
-                break;
         }
-        items.Add(gameItem, info);
+        items.addItem(gameItem, info);
     }
     string RarityGenerator()
     {
