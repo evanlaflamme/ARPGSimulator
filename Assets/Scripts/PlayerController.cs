@@ -198,14 +198,15 @@ public class PlayerController : MonoBehaviour {
 	}
 		
 	void OnTriggerEnter2D (Collider2D other) {
-		if (other.gameObject.CompareTag ("OctalpusHit")) {
-			StartCoroutine (Paint ());
-			damage (100);
-		} else if (other.gameObject.CompareTag ("ZombieHit")) {
-			StartCoroutine (Paint ());
-			damage (20);
+		if (!isDead) {
+			if (other.gameObject.CompareTag ("OctalpusHit")) {
+				StartCoroutine (Paint ());
+				damage (100);
+			} else if (other.gameObject.CompareTag ("ZombieHit")) {
+				StartCoroutine (Paint ());
+				damage (20);
+			}
 		}
-
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
