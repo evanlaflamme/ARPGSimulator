@@ -66,7 +66,7 @@ public class OctalpusController : MonoBehaviour {
 		} else if (other.gameObject.CompareTag ("Bash")) {
 			PlayerController source = other.gameObject.GetComponentInParent<PlayerController> ();
 			StartCoroutine (Paint ());
-			damage (source.doDamage (1.3f));
+			damage (source.doDamage (1.5f));
 		} else if (other.gameObject.CompareTag ("Dash")) {
 			PlayerController source = other.gameObject.GetComponentInParent<PlayerController> ();
 			StartCoroutine (Paint ());
