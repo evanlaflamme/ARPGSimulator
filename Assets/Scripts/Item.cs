@@ -4,19 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Item : MonoBehaviour {
-    private Hashtable items = new Hashtable();
-    public Hashtable Items
-    {
-        get; set;
-    }
-    public void addItem(GameObject obj, Item itemInfo)
-    {
-        items.Add(obj, itemInfo);
-    }
-    public void getItemInfo (string itemName)
-    {
-
-    }
 }
 
 class Equipment : Item

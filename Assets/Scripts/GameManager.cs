@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
 	public static GameManager instance = null;
 	private static int level = 1;
+    private static Dictionary<string, Item> items = new Dictionary<string, Item>();
 	public AudioClip[] clips;
 	public AudioSource audioSource;
 
@@ -56,4 +57,21 @@ public class GameManager : MonoBehaviour
 		level++;
 		SceneManager.LoadScene (Application.loadedLevel);
 	}
+
+    public static Item getItem(string name)
+    {
+
+        return items[name];
+    }
+
+    public static Dictionary<string, Item> getItems()
+    {
+
+        return items;
+    }
+
+    public static void addItem(string name, Item itemInfo)
+    {
+        items.Add(name, itemInfo);
+    }
 }
