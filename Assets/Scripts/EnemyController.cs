@@ -10,8 +10,7 @@ public class EnemyController : MonoBehaviour {
     public GameObject[] items;
     public ItemController ic;
 
-    private const int MAX_HEALTH = 200;
-	public int health = MAX_HEALTH;
+	public int health = 200;
 
 	public float range;
 	public float attackRange;
@@ -24,6 +23,9 @@ public class EnemyController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
+		GameManager gm = GameObject.FindWithTag ("GameController").GetComponent<GameManager> ();
+
+		health = health * (1 + 0.2 * gm.getLevel ());
 	}
 	
 	// Update is called once per frame
