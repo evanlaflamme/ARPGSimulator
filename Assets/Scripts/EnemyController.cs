@@ -38,7 +38,7 @@ public class EnemyController : MonoBehaviour {
 				} else {
 					//Attack
 					if (attackCtr == 0) {
-						anim.Play ("Attack");
+						anim.Play ("EnemyAttack");
 						attackCtr = (int)Random.Range (50, 100);
 					}
 
@@ -112,7 +112,7 @@ public class EnemyController : MonoBehaviour {
 	IEnumerator Paint() {
 		SpriteRenderer renderer = this.GetComponentInChildren<SpriteRenderer> ();
 		renderer.color = new Color(255, 0, 0, 200);
-		yield return new WaitForSeconds(0.1F);
+		yield return new WaitForSeconds(0.2F);
 		renderer.color = Color.white;
 	}
 }
