@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour {
 	public Text gameOverDialog;
     private HealthPots hp = new HealthPots(1);
     private ManaPots mp = new ManaPots(1);
-    private Key key = new Key();
 
     private const int MAX_HEALTH = 1000;
 	private const int MAX_MANA = 200;
@@ -44,6 +43,8 @@ public class PlayerController : MonoBehaviour {
 	public bool isMoving = false;
 	public bool isDead = false;
 	public bool isFacingRight = true;
+
+	public bool hasKey = false;
 
 	void Start () {
 		gameManager = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameManager> ();
@@ -227,7 +228,7 @@ public class PlayerController : MonoBehaviour {
         }
         else if(collision.gameObject.CompareTag("Key"))
         {
-            key.IsKey = true;
+			hasKey = true;
         }
     }
 
