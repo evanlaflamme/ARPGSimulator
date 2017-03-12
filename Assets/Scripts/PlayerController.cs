@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour {
 	public Text healthText;
 	public Text manaText;
 	public Text gameOverDialog;
+	public Text hpPotText;
+	public Text manaPotText;
+
     private HealthPots hp = new HealthPots(1);
     private ManaPots mp = new ManaPots(1);
     private Key key = new Key();
@@ -189,12 +192,15 @@ public class PlayerController : MonoBehaviour {
 		Vector3 hpScale = healthBar.localScale;
 		hpScale.x = (float)health / (float)MAX_HEALTH;  
 		healthBar.localScale = hpScale;
-		healthText.text = "Health:\n " + health + "/1000";
+		healthText.text = "Health:\n" + health + "/1000";
 
 		Vector3 manaScale = manaBar.localScale;
 		manaScale.x = (float)mana / (float)MAX_MANA;  
 		manaBar.localScale = manaScale;
 		manaText.text = "Mana: \n" + (int)mana + "/200";
+
+		hpPotText.text = hp.Quantity.ToString ();
+		manaPotText.text = mp.Quantity.ToString ();
 	}
 		
 	void OnTriggerEnter2D (Collider2D other) {
