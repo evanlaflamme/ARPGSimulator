@@ -7,8 +7,10 @@ public class EnemyController : MonoBehaviour {
 	public GameObject player;
 	public Animator anim;
 	private Vector3 targetPosition;
+    public GameObject[] items;
+    public ItemController ic;
 
-	private const int MAX_HEALTH = 200;
+    private const int MAX_HEALTH = 200;
 	public int health = MAX_HEALTH;
 
 	public float range;
@@ -103,8 +105,7 @@ public class EnemyController : MonoBehaviour {
     {
         if (health <= 0)
         {
-            //Instantiate(item, transform.position, transform.rotation);
-
+            ic.GenerateNewItem();
         }
     }
 
