@@ -18,7 +18,11 @@ public class ItemController : MonoBehaviour {
         int generatedItem = Random.Range(0, (items.Count * 2)+1);
         if(generatedItem > items.Count)
         {
-
+            GenerateNewItem();
+        }
+        else
+        {
+            Instantiate(items, transform.position, transform.rotation);
         }
     }
 	
