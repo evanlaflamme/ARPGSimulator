@@ -92,11 +92,11 @@ public class PlayerController : MonoBehaviour {
 				leapCtr = LEAP_LAG;
 				mana -= 200;
 			}
-			if (Input.GetKey (KeyCode.Alpha1)) {
+			if (Input.GetKeyDown (KeyCode.Alpha1)) {
 				if (hp.Quantity > 0)
 					health = hp.usePot (MAX_HEALTH);
 			}
-			if (Input.GetKey (KeyCode.Alpha2)) {
+			if (Input.GetKeyDown (KeyCode.Alpha2)) {
 				if (mp.Quantity > 0)
 					mana = mp.usePot (MAX_MANA);
 			}
