@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour {
 	public Text gameOverDialog;
 	public Text hpPotText;
 	public Text manaPotText;
+	public Text weaponText;
+	public Text armorText;
 
     private HealthPots hp = new HealthPots(1);
     private ManaPots mp = new ManaPots(1);
