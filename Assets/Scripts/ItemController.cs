@@ -47,6 +47,11 @@ public class ItemController : MonoBehaviour {
         }
         GameManager.addItem((rn+ gameItem.tag+bonusName[baseDammage]), info);
     }
+
+    public void GenerateKey()
+    {
+
+    }
     public 
     string RarityGenerator()
     {
