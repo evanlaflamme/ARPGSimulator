@@ -16,10 +16,11 @@ public class PlayerController : MonoBehaviour {
 	public Text manaText;
     private HealthPots hp = new HealthPots(1);
     private ManaPots mp = new ManaPots(1);
+    private Key key = new Key();
 
     private const int MAX_HEALTH = 1000;
 	private const int MAX_MANA = 200;
-	public int health = MAX_HEALTH;
+	public int health = 1000;
 	public float mana = MAX_MANA;
 	public float speed;
 	public float maxSpeed;
@@ -82,8 +83,18 @@ public class PlayerController : MonoBehaviour {
 				leapCtr = LEAP_LAG;
 				mana -= 200;
 			}
+            if(Input.GetKey (KeyCode.Alpha1))
+            {
+                if(hp.Quantity > 0)
+                    health = hp.usePot(MAX_HEALTH);
+            }
+            if(Input.GetKey(KeyCode.Alpha2))
+            {
+                if (mp.Quantity > 0)
+                    mana = mp.usePot(MAX_MANA);
+            }
 
-			if (dashCtr > 0) {
+            if (dashCtr > 0) {
 				dashCtr--;
 			} 
 
@@ -183,6 +194,7 @@ public class PlayerController : MonoBehaviour {
 			StartCoroutine (Paint ());
 			damage (20);
 		}
+
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -196,6 +208,10 @@ public class PlayerController : MonoBehaviour {
         {
             mp.addPot();
             Debug.Log("Mana: " + mp.Quantity);
+        }
+        if(collision.gameObject.CompareTag("Key"))
+        {
+            key.IsKey = true;
         }
     }
 
