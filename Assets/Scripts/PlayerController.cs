@@ -75,6 +75,10 @@ public class PlayerController : MonoBehaviour {
 			mana -= 200;
 		}
 
+		if (Input.GetKey (KeyCode.R)) {
+			Application.LoadLevel(Application.loadedLevel);
+		}
+
 		if (dashCtr > 0) {
 			dashCtr--;
 		} 
@@ -156,17 +160,20 @@ public class PlayerController : MonoBehaviour {
 		return (int)(Random.Range(20, 30) * multiplier);
 	}
 
-	private int damage(int dmg) {
-		health -= dmg;
-		if (health <= 0)
-			isDead = true;
-	}
-
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.CompareTag ("OctalpusHit")) {
+			StartCoroutine (Paint ());
 			damage (100);
 		} else if (other.gameObject.CompareTag ("ZombieHit")) {
+			StartCoroutine (Paint ());
 			damage (20);
 		}
+	}
+
+	IEnumerator Paint() {
+		SpriteRenderer renderer = this.GetComponentInChildren<SpriteRenderer> ();
+		renderer.color = new Color(255, 0, 0, 200);
+		yield return new WaitForSeconds(0.1F);
+		renderer.color = Color.white;
 	}
 }

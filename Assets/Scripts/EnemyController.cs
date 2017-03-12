@@ -68,18 +68,23 @@ public class EnemyController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("Cleave")) {
 			PlayerController source = other.gameObject.GetComponentInParent<PlayerController> ();
+			StartCoroutine (Paint ());
 			damage (source.doDamage (1.0f));
 		} else if (other.gameObject.CompareTag ("Bash")) {
 			PlayerController source = other.gameObject.GetComponentInParent<PlayerController> ();
+			StartCoroutine (Paint ());
 			damage (source.doDamage (1.3f));
 		} else if (other.gameObject.CompareTag ("Dash")) {
 			PlayerController source = other.gameObject.GetComponentInParent<PlayerController> ();
+			StartCoroutine (Paint ());
 			damage (source.doDamage (1.1f));
 		} else if (other.gameObject.CompareTag ("Dash1")) {
 			PlayerController source = other.gameObject.GetComponentInParent<PlayerController> ();
+			StartCoroutine (Paint ());
 			damage (source.doDamage (2.0f));
 		} else if (other.gameObject.CompareTag ("Explosion")) {
 			PlayerController source = other.gameObject.GetComponentInParent<PlayerController> ();
+			StartCoroutine (Paint ());
 			damage (source.doDamage (5.0f));
 		}
 	}
@@ -101,8 +106,13 @@ public class EnemyController : MonoBehaviour {
         if (health <= 0)
         {
             ic.GenerateNewItem();
-            //Instantiate(item, transform.position, transform.rotation);
-
         }
     }
+
+	IEnumerator Paint() {
+		SpriteRenderer renderer = this.GetComponentInChildren<SpriteRenderer> ();
+		renderer.color = new Color(255, 0, 0, 200);
+		yield return new WaitForSeconds(0.1F);
+		renderer.color = Color.white;
+	}
 }
