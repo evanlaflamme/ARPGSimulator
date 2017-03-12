@@ -38,7 +38,7 @@ public class EnemyController : MonoBehaviour {
 				} else {
 					//Attack
 					if (attackCtr == 0) {
-						anim.Play ("Attack");
+						anim.Play ("EnemyAttack");
 						attackCtr = (int)Random.Range (50, 100);
 					}
 
