@@ -45,7 +45,7 @@ class Equipment : Item
 class Consumable : Item
 {
 
-    private int baseHeal, levelBonus, totalHeal;
+    private int baseHeal, totalHeal;
     private int quantity;
     public int Quantity
     {
@@ -58,9 +58,9 @@ class Consumable : Item
             this.quantity = value;
         }
     }
-    public Consumable (int levelBonus)
+    public Consumable (int baseHeal)
     {
-        this.totalHeal = baseHeal * levelBonus;
+        this.baseHeal = baseHeal;
     }
     
 
@@ -69,7 +69,7 @@ class Consumable : Item
         this.quantity++;
     }
 
-    public int usePot(int currentValue)
+    public virtual int usePot(int currentValue)
     {
         quantity--;
         return currentValue + totalHeal;
@@ -104,17 +104,25 @@ class Armor: Equipment
 
 class HealthPots: Consumable
 {
-    private int baseHeal, levelBonus, totalHeal;
-    public HealthPots(int levelBonus) : base(levelBonus)
+    private int baseHeal, totalHeal;
+    public HealthPots(int baseHeal) : base(baseHeal)
     {
+    }
+    public override int usePot(int maxHP)
+    {
+        return maxHP;
     }
 }
 
 class ManaPots : Consumable
 {
-    private int baseHeal, levelBonus, totalHeal;
+    private int baseHeal, totalHeal;
     
-    public ManaPots(int levelBonus) : base(levelBonus)
+    public ManaPots(int baseHeal) : base(baseHeal)
     {
+    }
+    public override int usePot(int maxMP)
+    {
+        return maxMP;
     }
 }

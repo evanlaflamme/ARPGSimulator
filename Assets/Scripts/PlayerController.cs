@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
 
     private const int MAX_HEALTH = 1000;
 	private const int MAX_MANA = 200;
-	public int health = MAX_HEALTH;
+	public int health = 1000;
 	public float mana = MAX_MANA;
 	public float speed;
 	public float maxSpeed;
@@ -82,8 +82,18 @@ public class PlayerController : MonoBehaviour {
 				leapCtr = LEAP_LAG;
 				mana -= 200;
 			}
+            if(Input.GetKey (KeyCode.Alpha1))
+            {
+                if(hp.Quantity > 0)
+                    health = hp.usePot(MAX_HEALTH);
+            }
+            if(Input.GetKey(KeyCode.Alpha2))
+            {
+                if (mp.Quantity > 0)
+                    mana = mp.usePot(MAX_MANA);
+            }
 
-			if (dashCtr > 0) {
+            if (dashCtr > 0) {
 				dashCtr--;
 			} 
 
