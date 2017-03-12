@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyController : MonoBehaviour {
 
@@ -25,7 +26,7 @@ public class EnemyController : MonoBehaviour {
 		player = GameObject.FindWithTag ("Player");
 		GameManager gm = GameObject.FindWithTag ("GameController").GetComponent<GameManager> ();
 
-		health = health * (1 + 0.2 * gm.getLevel ());
+		health = Convert.ToInt32(health * (1 + 0.2F * gm.getLevel ()));
 	}
 	
 	// Update is called once per frame
@@ -41,7 +42,7 @@ public class EnemyController : MonoBehaviour {
 					//Attack
 					if (attackCtr == 0) {
 						anim.Play ("EnemyAttack");
-						attackCtr = (int)Random.Range (50, 100);
+						attackCtr = (int)UnityEngine.Random.Range (50, 100);
 					}
 
 					if (attackCtr > 0) {
