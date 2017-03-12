@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 		
 	}
 
-	public static int getLevel() {
+	public int getLevel() {
 		return level;
 	}
 

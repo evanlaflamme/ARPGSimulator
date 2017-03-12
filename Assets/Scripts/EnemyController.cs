@@ -24,7 +24,6 @@ public class EnemyController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
-		hitstunCtr = 0;
 	}
 	
 	// Update is called once per frame
