@@ -35,12 +35,21 @@ public class GameManager : MonoBehaviour
 		InitGame();
 	}
 
+	public void ResetGame() {
+		level = 1;
+		SceneManager.LoadScene (Application.loadedLevel);
+		InitGame ();
+	}
+
 	//Initializes the game for each level.
-	void InitGame()
-	{
+	void InitGame()	{
 		print (level);
 		audioSource.clip = clips [UnityEngine.Random.Range (0, clips.Length - 1)];
 		audioSource.Play();
+	}
+
+	public void ExitGame() {
+		Application.Quit ();
 	}
 
 	//Update is called every frame.
