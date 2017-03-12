@@ -72,7 +72,7 @@ class Consumable : Item
         this.quantity++;
     }
 
-    public virtual int usePot(int currentValue)
+    public int usePot(int currentValue)
     {
         quantity--;
         return currentValue + totalHeal;
@@ -134,10 +134,6 @@ class HealthPots: Consumable
     public HealthPots(int baseHeal) : base(baseHeal)
     {
     }
-    public override int usePot(int maxHP)
-    {
-        return maxHP;
-    }
 }
 
 class ManaPots : Consumable
@@ -146,9 +142,5 @@ class ManaPots : Consumable
     
     public ManaPots(int baseHeal) : base(baseHeal)
     {
-    }
-    public override int usePot(int maxMP)
-    {
-        return maxMP;
     }
 }
